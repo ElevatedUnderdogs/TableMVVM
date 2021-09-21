@@ -1,2 +1,3 @@
 # TableMVVM
-A declarative interface for UITableView
+
+A description of this package.
