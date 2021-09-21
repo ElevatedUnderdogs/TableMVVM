@@ -8,10 +8,10 @@
 import UIKit
 
 /// ComposedRows can be `AlternatesRows`, `HasCells`,  `OneRow`, `Rows`
- struct SectionWithoutHeader<ComposedRows>: ComposesRows, HasInit, HasNoHeader, RegistersCells
+ public struct SectionWithoutHeader<ComposedRows>: ComposesRows, HasInit, HasNoHeader, RegistersCells
 where ComposedRows: PrimaryRowsMethods,
       ComposedRows: HasInit,
       ComposedRows: RegistersCells {
 
-         var rows: ComposedRows = .init()
+       public  var rows: ComposedRows = .init()
 }

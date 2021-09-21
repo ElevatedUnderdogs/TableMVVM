@@ -14,7 +14,7 @@ import UIKit
     /// view is already injected.  This also clears the subViews before injecting.
     /// - Parameters:
     ///   - view: The view you are injecting
-    func inject(view: UIView, insets: UIEdgeInsets = .zero) {
+    public func inject(view: UIView, insets: UIEdgeInsets = .zero) {
         guard !subviews.contains(view) else { return }
         if !subviews.isEmpty {
             subviews.forEach { $0.removeFromSuperview() }

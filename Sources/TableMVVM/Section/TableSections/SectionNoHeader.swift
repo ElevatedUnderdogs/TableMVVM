@@ -9,14 +9,15 @@ import UIKit
 
 /// Definition:
 /// ```
-/// struct SectionNoHeader<Cell>: HasCells, HasInit, HasNoHeader`
+/// public struct SectionNoHeader<Cell>: HasCells, HasInit, HasNoHeader`
 ///    where Cell: UITableViewCell,
 ///    Cell: HasViewModel
 /// ```
- struct SectionNoHeader<Cell>: HasCells, HasInit, HasNoHeader, HasCount
+public struct SectionNoHeader<Cell>: HasCells, HasInit, HasNoHeader, HasCount
 where Cell: UITableViewCell,
       Cell: HasViewModel {
 
-         var cellsViewModels: [Cell.ViewModel] = []
-         var cellTapped: CellTapAction?
+         public var cellsViewModels: [Cell.ViewModel] = []
+         public var cellTapped: CellTapAction?
+
 }

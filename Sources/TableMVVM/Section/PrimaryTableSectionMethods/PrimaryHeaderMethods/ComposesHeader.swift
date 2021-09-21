@@ -7,27 +7,27 @@
 
 import UIKit
 
-/// Could be used for alternating headers as the protocol.
+/// Could be used for alternating headers as the public protocol.
 /// inherited by: `SectionWithRowsHeader`
- protocol ComposesHeader: PrimaryHeaderMethods {
+ public protocol ComposesHeader: PrimaryHeaderMethods {
     associatedtype Header: PrimaryHeaderMethods
     var header: Header { get }
 }
 
  extension ComposesHeader {
 
-    func tableViewViewForHeader(_ tableView: UITableView) -> UIView? {
+    public func tableViewViewForHeader(_ tableView: UITableView) -> UIView? {
         header.tableViewViewForHeader(tableView)
     }
 
-    func tableViewHeightForHeaderInSection(_ tableView: UITableView) -> CGFloat {
+    public func tableViewHeightForHeaderInSection(_ tableView: UITableView) -> CGFloat {
         header.tableViewHeightForHeaderInSection(tableView)
     }
 }
 
  extension ComposesHeader where Header: RegistersHeader {
 
-    func registerHeader(tableView: UITableView) {
+    public func registerHeader(tableView: UITableView) {
         header.registerHeader(tableView: tableView)
     }
 }

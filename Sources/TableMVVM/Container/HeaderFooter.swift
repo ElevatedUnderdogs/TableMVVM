@@ -12,20 +12,20 @@ import UIKit
 /// This becomes problematic when you need to use that view separately.  So then you either duplicate the code
 /// or have to refactor out the view from the cell so that it can be used separately from a `UITableViewCell` and
 /// as a subview to a `UItableviewCell`.
- class HeaderFooter<View: UIView>: UITableViewHeaderFooterView, HasViewModel, HasInit
+ public class HeaderFooter<View: UIView>: UITableViewHeaderFooterView, HasViewModel, HasInit
 where View: HasViewModel,
       View.ViewModel: HasInit {
 
     var view: View = .init(frame: .zero)
 
     /// This is used as a reuse identifier when dequeueing the cell.
-     override class var className: String {
+     override public class var className: String {
         View.className
     }
 
-     typealias ViewModel = View.ViewModel
+     public typealias ViewModel = View.ViewModel
 
-     var viewModel: ViewModel = ViewModel() {
+    public var viewModel: ViewModel = ViewModel() {
         didSet {
             // Makes clear the stupid default background for UITableViewHeaderFooterView:
             // UISystemBackgroundView.

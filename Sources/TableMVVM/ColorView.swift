@@ -9,11 +9,11 @@
 import UIKit
 
 extension UIColor: HasInit {}
- class ColorView: UIView, HasViewModel, HasInit {
+ public class ColorView: UIView, HasViewModel, HasInit {
 
-     typealias ViewModel = UIColor
+     public typealias ViewModel = UIColor
 
-     var viewModel: ViewModel = .red {
+    public var viewModel: ViewModel = .red {
         didSet {
             self.backgroundColor = viewModel
         }

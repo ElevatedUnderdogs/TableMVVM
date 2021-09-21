@@ -7,9 +7,13 @@
 
 import UIKit
 
- struct Header<Head: UITableViewHeaderFooterView>: HasHeader, HasInit, RegistersHeader
+public struct Header<Head: UITableViewHeaderFooterView>: HasHeader, HasInit, RegistersHeader
 where Head: HasViewModel,
       Head.ViewModel: HasInit {
 
-     var headerViewModel: Head.ViewModel = .init()
+    public var headerViewModel: Head.ViewModel = .init()
+    public init() { self.headerViewModel = .init() }
+    public init(headerViewModel: Head.ViewModel) {
+        self.headerViewModel = headerViewModel
+    }
 }

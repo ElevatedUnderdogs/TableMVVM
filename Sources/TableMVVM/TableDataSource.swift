@@ -7,10 +7,10 @@
 
 import Foundation
 
- protocol HasInit {
+public protocol HasInit {
     init()
 }
 
- protocol HasCount {
+ public protocol HasCount {
     var count: Int { get }
 }

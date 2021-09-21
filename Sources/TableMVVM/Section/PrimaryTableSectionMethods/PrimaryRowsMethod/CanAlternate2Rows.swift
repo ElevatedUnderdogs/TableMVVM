@@ -8,7 +8,7 @@
 import UIKit
 
 /// Inherited by: `RowAlternator2`
- protocol CanAlternate2Rows: AlternatesRows, RegistersCells {
+ public protocol CanAlternate2Rows: AlternatesRows, RegistersCells {
     typealias ReturnRows = PrimaryRowsMethods & HasCount & RegistersCells
     associatedtype Rows1: ReturnRows
     associatedtype Rows2: ReturnRows
@@ -20,11 +20,11 @@ import UIKit
 
  extension CanAlternate2Rows {
 
-    var currentRows: PrimaryRowsMethods {
+    public var currentRows: PrimaryRowsMethods {
         alternatingLogic?(rows1, rows2) ?? rows1
     }
 
-    func registerCells(tableView: UITableView) {
+    public func registerCells(tableView: UITableView) {
         rows1.registerCells(tableView: tableView)
         rows2.registerCells(tableView: tableView)
     }

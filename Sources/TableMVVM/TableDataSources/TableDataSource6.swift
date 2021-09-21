@@ -7,7 +7,7 @@
 
 import UIKit
 
- class TableDataSource6<
+ public class TableDataSource6<
     Section0: PrimaryTableSectionMethods,
     Section1: PrimaryTableSectionMethods,
     Section2: PrimaryTableSectionMethods,
@@ -22,7 +22,7 @@ where Section0: HasInit,
       Section4: HasInit,
       Section5: HasInit {
 
-     var table: UITableView?
+    public var table: UITableView?
 
     init(
         section0: Section0,
@@ -58,13 +58,13 @@ where Section0: HasInit,
     var section5: Section5 = .init() {
         didSet { self.table?.reload(on: queue) }
     }
-     var registerCandidates: [RegistersCells & RegistersHeader] {
+    public var registerCandidates: [RegistersCells & RegistersHeader] {
         [section0, section1, section2, section3, section4, section5]
     }
 
-     func numberOfSections(in tableView: UITableView) -> Int { 6 }
+    public func numberOfSections(in tableView: UITableView) -> Int { 6 }
 
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0: return section0.tableViewDidSelectRowAt(tableView, didSelectRowAt: indexPath)
         case 1: return section1.tableViewDidSelectRowAt(tableView, didSelectRowAt: indexPath)
@@ -76,7 +76,7 @@ where Section0: HasInit,
         }
     }
 
-     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0: return section0.tableViewViewForHeader(tableView)
         case 1: return section1.tableViewViewForHeader(tableView)
@@ -88,7 +88,7 @@ where Section0: HasInit,
         }
     }
 
-     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0: return section0.tableViewHeightForHeaderInSection(tableView)
         case 1: return section1.tableViewHeightForHeaderInSection(tableView)
@@ -100,7 +100,7 @@ where Section0: HasInit,
         }
     }
 
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return section0.tableViewNumberOfRows(tableView)
         case 1: return section1.tableViewNumberOfRows(tableView)
@@ -112,7 +112,7 @@ where Section0: HasInit,
         }
     }
 
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0: return section0.tableView(tableView, cellForRowAt: indexPath)
         case 1: return section1.tableView(tableView, cellForRowAt: indexPath)

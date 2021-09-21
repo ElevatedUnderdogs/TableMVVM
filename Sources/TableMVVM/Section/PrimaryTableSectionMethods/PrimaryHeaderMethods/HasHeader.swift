@@ -8,7 +8,7 @@
 import UIKit
 
 /// inherited by: `Section`, `Header`
- protocol HasHeader: PrimaryHeaderMethods, RegistersHeader {
+ public protocol HasHeader: PrimaryHeaderMethods, RegistersHeader {
     associatedtype Head: UITableViewHeaderFooterView, HasViewModel
     var headerViewModel: Head.ViewModel { get }
 }
@@ -20,18 +20,18 @@ import UIKit
     /// tableview as the one you registered the HeaderFooterOn?
     /// - Parameter tableView: Table view to check if there is a Header available for reuse.
     /// - Returns: returns the header view 
-    func tableViewViewForHeader(_ tableView: UITableView) -> UIView? {
+    public func tableViewViewForHeader(_ tableView: UITableView) -> UIView? {
         tableView.dequeueReusableHeaderFooterView(
             section: Head(),
             viewModel: headerViewModel
         )
     }
 
-    func tableViewHeightForHeaderInSection(_ tableView: UITableView) -> CGFloat {
+    public func tableViewHeightForHeaderInSection(_ tableView: UITableView) -> CGFloat {
         UITableView.automaticDimension
     }
 
-    func registerHeader(tableView: UITableView) {
+    public func registerHeader(tableView: UITableView) {
         tableView.register(Head.self, forHeaderFooterViewReuseIdentifier: Head.className)
     }
 }

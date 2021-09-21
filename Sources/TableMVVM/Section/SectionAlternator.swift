@@ -7,29 +7,29 @@
 
 import UIKit
 
- protocol SectionAlternator {
+ public protocol SectionAlternator {
     var currentSection: PrimaryTableSectionMethods & HasCount { get }
 }
 
  extension SectionAlternator {
 
-    func tableViewNumberOfRows(_ tableView: UITableView) -> Int {
+    public func tableViewNumberOfRows(_ tableView: UITableView) -> Int {
         currentSection.tableViewNumberOfRows(tableView)
     }
 
-    func tableViewDidSelectRowAt(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableViewDidSelectRowAt(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentSection.tableViewDidSelectRowAt(tableView, didSelectRowAt: indexPath)
     }
 
-    func tableViewViewForHeader(_ tableView: UITableView) -> UIView? {
+    public func tableViewViewForHeader(_ tableView: UITableView) -> UIView? {
         currentSection.tableViewViewForHeader(tableView)
     }
 
-    func tableViewHeightForHeaderInSection(_ tableView: UITableView) -> CGFloat {
+    public func tableViewHeightForHeaderInSection(_ tableView: UITableView) -> CGFloat {
         currentSection.tableViewHeightForHeaderInSection(tableView)
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         currentSection.tableView(tableView, cellForRowAt: indexPath)
     }
 }

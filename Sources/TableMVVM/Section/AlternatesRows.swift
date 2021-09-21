@@ -8,25 +8,25 @@
 import UIKit
 
 /// Inherited by `CanAlternate2Rows` ultimately by: `RowAlternator2`
- protocol AlternatesRows: PrimaryRowsMethods {
+ public protocol AlternatesRows: PrimaryRowsMethods {
     var currentRows: PrimaryRowsMethods { get }
 }
 
  extension AlternatesRows {
 
-    func tableViewNumberOfRows(_ tableView: UITableView) -> Int {
+    public func tableViewNumberOfRows(_ tableView: UITableView) -> Int {
         currentRows.tableViewNumberOfRows(tableView)
     }
 
-    func tableViewDidSelectRowAt(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableViewDidSelectRowAt(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentRows.tableViewDidSelectRowAt(tableView, didSelectRowAt: indexPath)
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         currentRows.tableView(tableView, cellForRowAt: indexPath)
     }
 
-    var count: Int {
+    public var count: Int {
         currentRows.count
     }
 }

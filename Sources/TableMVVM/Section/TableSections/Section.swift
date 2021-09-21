@@ -11,32 +11,54 @@ import UIKit
 /// Cell could be: `ViewModelCell`
 /// Definition: 
 /// ```
-///     struct Section<Header, Cell>: HasCells, HasInit, HasHeader
+///     public struct Section<Header, Cell>: HasCells, HasInit, HasHeader
 ///     where Header: UITableViewHeaderFooterView,
 ///           Header: HasViewModel,
 ///           Header.ViewModel: HasInit,
 ///           Cell: UITableViewCell,
 ///           Cell: HasViewModel {
 /// ```
- struct Section<Header, Cell>: HasCells, HasInit, HasHeader, HasCount
+public struct Section<Header, Cell>: HasCells, HasInit, HasHeader, HasCount
 where Header: UITableViewHeaderFooterView,
       Header: HasViewModel,
       Header.ViewModel: HasInit,
       Cell: UITableViewCell,
       Cell: HasViewModel {
 
-         typealias Head = Header
+    public typealias Head = Header
 
-         var headerViewModel: Header.ViewModel = .init()
-         var cellsViewModels: [Cell.ViewModel] = []
-         var cellTapped: CellTapAction?
-}
+    public var headerViewModel: Header.ViewModel = .init()
+    public var cellsViewModels: [Cell.ViewModel] = []
+    public var cellTapped: CellTapAction?
 
- class TextView: UIView, HasViewModel, HasInit {
-
-     struct ViewModel: HasInit {
-        var string: String = "cats"
+    public init() {
+        self.headerViewModel = .init()
+        self.cellsViewModels = []
+        self.cellTapped = nil
     }
 
-     var viewModel: ViewModel = .init()
+    public init(
+        headerViewModel: Header.ViewModel,
+        cellsViewModels: [Cell.ViewModel],
+        cellTapped: CellTapAction?
+    ) {
+        self.headerViewModel = headerViewModel
+        self.cellsViewModels = cellsViewModels
+        self.cellTapped = cellTapped
+    }
+}
+
+public class TextView: UIView, HasViewModel, HasInit {
+
+    public struct ViewModel: HasInit {
+        var string: String = "cats"
+        public init() {
+            self.string = "cats"
+        }
+        public init(string: String) {
+            self.string = string
+        }
+    }
+
+    public var viewModel: ViewModel = .init()
 }

@@ -7,6 +7,6 @@
 
 import UIKit
 
- protocol RegistersHeader {
+ public protocol RegistersHeader {
     func registerHeader(tableView: UITableView)
 }

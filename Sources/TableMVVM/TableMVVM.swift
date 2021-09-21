@@ -8,7 +8,7 @@
 import UIKit
 
 
- class TableMVVM<ViewModel>: UITableView
+ public class TableMVVM<ViewModel>: UITableView
 where ViewModel: UITableViewDataSource,
       ViewModel: UITableViewDelegate,
       ViewModel: RegistersCells,
@@ -34,7 +34,7 @@ where ViewModel: UITableViewDataSource,
         DispatchQueue.main.async(execute: reloadData)
     }
 
-    typealias ViewModel = ViewModel
+    public typealias ViewModel = ViewModel
 
     var presentationLogic: ((ViewModel?) -> ViewModel)?
 

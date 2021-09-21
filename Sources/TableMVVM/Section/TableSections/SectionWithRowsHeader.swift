@@ -9,7 +9,7 @@ import UIKit
 
 /// ComposedHeader could be:  `SectionWithRowsHeader`, `Section`, `Header`, `SectionNoHeader`, `SectionWithoutHeader`
 /// ComposedRows:  `OneRow`, `Rows`
- struct SectionWithRowsHeader<
+ public struct SectionWithRowsHeader<
     ComposedHeader,
     ComposedRows
 >: ComposesRows, HasInit, ComposesHeader, RegistersCells, RegistersHeader
@@ -20,6 +20,6 @@ where ComposedHeader: PrimaryHeaderMethods,
       ComposedRows: HasInit,
       ComposedRows: RegistersCells {
 
-         var header: ComposedHeader = .init()
-     var rows: ComposedRows = .init()
+    public var header: ComposedHeader = .init()
+    public var rows: ComposedRows = .init()
 }

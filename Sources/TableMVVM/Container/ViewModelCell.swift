@@ -13,20 +13,20 @@ import UIKit
 /// and as a subview to a `UItableviewCell`.
 ///
 /// ViewModelCell automatically lets you inject a view into a TableViewCell
- class ViewModelCell<View: UIView>: UITableViewCell, HasViewModel
+ public class ViewModelCell<View: UIView>: UITableViewCell, HasViewModel
 where View: HasViewModel,
       View.ViewModel: HasInit {
 
     var view: View = .init(frame: .zero)
 
     /// This is used as a reuse identifier when dequeueing the cell.
-     override class var className: String {
+     override public class var className: String {
         View.className
     }
 
-     typealias ViewModel = View.ViewModel
+     public typealias ViewModel = View.ViewModel
 
-     var viewModel: ViewModel = ViewModel() {
+    public var viewModel: ViewModel = ViewModel() {
         didSet {
             contentView.inject(view: view)
             view.viewModel = viewModel
