@@ -18,15 +18,12 @@ where Section0: HasFallBack,
 
     public var table: UITableView?
 
-    init(
-        section0: Section0,
-        section1: Section1,
-        section2: Section2
-    ) {
+    public init(section0: Section0, section1: Section1, section2: Section2) {
         self.section0 = section0
         self.section1 = section1
         self.section2 = section2
     }
+
     public var registerCandidates: [RegistersCells & RegistersHeader] { [section0, section1, section2] }
 
     var queue: DispatchQueueType = DispatchQueue.main

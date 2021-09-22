@@ -26,7 +26,7 @@ where Section0: HasFallBack,
 
     public var table: UITableView?
 
-    init(
+    public init(
         section0: Section0,
         section1: Section1,
         section2: Section2,

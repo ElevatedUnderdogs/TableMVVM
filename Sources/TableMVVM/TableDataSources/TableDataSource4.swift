@@ -20,12 +20,7 @@ where Section0: HasFallBack,
 
     public var table: UITableView?
 
-    init(
-        section0: Section0,
-        section1: Section1,
-        section2: Section2,
-        section3: Section3
-    ) {
+    public init(section0: Section0, section1: Section1, section2: Section2, section3: Section3) {
         self.section0 = section0
         self.section1 = section1
         self.section2 = section2
