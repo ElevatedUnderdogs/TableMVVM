@@ -15,4 +15,7 @@ where ComposedRows: PrimaryRowsMethods,
 
     public static var fallBack: Self { .init() }
     public  var rows: ComposedRows = .fallBack
+    public init(rows: ComposedRows = .fallBack) {
+        self.rows = rows
+    }
 }

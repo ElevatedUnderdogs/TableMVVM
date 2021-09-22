@@ -8,13 +8,13 @@
 import UIKit
 
 /// inherited by: `Section`, `Header`
- public protocol HasHeader: PrimaryHeaderMethods, RegistersHeader {
+public protocol HasHeader: PrimaryHeaderMethods, RegistersHeader {
     associatedtype Head: UITableViewHeaderFooterView, HasViewModel
     var headerViewModel: Head.ViewModel { get }
 }
 
- extension HasHeader {
-
+extension HasHeader {
+    
     /// Need to call register view for header first.
     /// **Troubleshooting note**: If this returns nil, are you passing the same
     /// tableview as the one you registered the HeaderFooterOn?
@@ -26,11 +26,11 @@ import UIKit
             viewModel: headerViewModel
         )
     }
-
+    
     public func tableViewHeightForHeaderInSection(_ tableView: UITableView) -> CGFloat {
         UITableView.automaticDimension
     }
-
+    
     public func registerHeader(tableView: UITableView) {
         tableView.register(Head.self, forHeaderFooterViewReuseIdentifier: Head.className)
     }

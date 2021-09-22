@@ -12,7 +12,9 @@ where Head: HasViewModel,
       Head.ViewModel: HasInit {
 
     public var headerViewModel: Head.ViewModel = .fallBack
-    public init() { self.headerViewModel = .fallBack }
+    public init() {
+        self.headerViewModel = .fallBack
+    }
     public init(headerViewModel: Head.ViewModel) {
         self.headerViewModel = headerViewModel
     }

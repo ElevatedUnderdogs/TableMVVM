@@ -11,9 +11,10 @@ import UIKit
 extension UIColor: HasInit {
     public static var fallBack: Self { .init() }
 }
- public class ColorView: UIView, HasViewModel {
 
-     public typealias ViewModel = UIColor
+public class ColorView: UIView, HasViewModel {
+
+    public typealias ViewModel = UIColor
 
     public var viewModel: ViewModel = .red {
         didSet {

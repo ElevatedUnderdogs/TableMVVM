@@ -29,12 +29,23 @@ where Section1: HasFallBack,
 
     public static var fallBack: Self { .init() }
 
-    var section1: Section1 = .fallBack
-    var section2: Section2 = .fallBack
+    public var section1: Section1 = .fallBack
+    public var section2: Section2 = .fallBack
+    public var alternatingLogic: AlternatingLogic?
+
+    public init(
+        section1: Section1 = .fallBack,
+        section2: Section2 = .fallBack,
+        alternatingLogic: AlternatingLogic? = nil
+    ) {
+        self.section1 = section1
+        self.section2 = section2
+        self.alternatingLogic = alternatingLogic
+    }
+
     public var registerCandidates: [RegistersCells & RegistersHeader] { [section1, section2] }
 
     public typealias AlternatingLogic = (Section1, Section2) -> PrimaryTableSectionMethods & HasCount
-    var alternatingLogic: AlternatingLogic?
 
     public var currentSection: PrimaryTableSectionMethods & HasCount {
         alternatingLogic?(section1, section2) ?? section1
