@@ -17,7 +17,7 @@ where Section0: HasFallBack {
 
     /// Designated Primary initializer
     /// - Parameter section0: pass an instance of the generic section.
-    init(section0: Section0) {
+    public init(section0: Section0) {
         self.section0 = section0
     }
 

@@ -7,17 +7,19 @@
 
 import UIKit
 
-
- public class TableMVVM<ViewModel>: UITableView
+/// Example:
+/// `typealias MyDataSource = TableDataSource1<SectionNoHeader<ColorCell>>`
+/// `TableMVVM<MyDataSource>`
+public class TableMVVM<ViewModel>: UITableView
 where ViewModel: UITableViewDataSource,
       ViewModel: UITableViewDelegate,
       ViewModel: RegistersCells,
       ViewModel: RegistersHeader,
       ViewModel: HasTable {
 
-    convenience init(
-        presentationLogic: ((ViewModel?) -> ViewModel)? = nil,
-        viewModel: ViewModel
+    public convenience init(
+        viewModel: ViewModel,
+        presentationLogic: ((ViewModel?) -> ViewModel)? = nil
     ) {
         self.init(frame: .zero)
         self.viewModel = viewModel
