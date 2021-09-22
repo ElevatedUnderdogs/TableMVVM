@@ -23,4 +23,8 @@ where ComposedHeader: PrimaryHeaderMethods,
     public static var fallBack: Self { .init() }
     public var header: ComposedHeader = .fallBack
     public var rows: ComposedRows = .fallBack
+    public init(header: ComposedHeader = .fallBack, rows: ComposedRows = .fallBack) {
+        self.header = header
+        self.rows = rows
+    }
 }

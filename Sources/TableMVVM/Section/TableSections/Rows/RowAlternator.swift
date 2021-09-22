@@ -25,4 +25,14 @@ where Rows1: HasFallBack,
     public var rows1: Rows1 = .fallBack
     public var rows2: Rows2 = .fallBack
     public var alternatingLogic: AlternatingLogic?
+
+    public init(
+        rows1: Rows1 = .fallBack,
+        rows2: Rows2 = .fallBack,
+        alternatingLogic: AlternatingLogic? = nil
+    ) {
+        self.rows1 = rows1
+        self.rows2 = rows2
+        self.alternatingLogic = alternatingLogic
+    }
 }

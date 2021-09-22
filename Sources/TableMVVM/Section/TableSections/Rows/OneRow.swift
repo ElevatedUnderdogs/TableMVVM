@@ -19,6 +19,11 @@ where Cell: HasViewModel,
 
     var tapped: CellTapAction?
 
+    public init(item: Cell.ViewModel = .fallBack, tapped: CellTapAction? = nil) {
+        self.item = item
+        self.tapped = tapped
+    }
+
     public typealias CellTapAction = (Cell.ViewModel, IndexPath) -> Void
 
     public func registerCells(tableView: UITableView) {

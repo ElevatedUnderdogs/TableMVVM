@@ -7,4 +7,4 @@
 
 import UIKit
 
- public typealias PrimaryTableSectionMethods = PrimaryHeaderMethods & PrimaryRowsMethods & RegistersCells & RegistersHeader
+public typealias PrimaryTableSectionMethods = PrimaryHeaderMethods & PrimaryRowsMethods & RegistersCells & RegistersHeader

@@ -40,9 +40,9 @@ where Header: UITableViewHeaderFooterView,
     }
 
     public init(
-        headerViewModel: Header.ViewModel,
-        cellsViewModels: [Cell.ViewModel],
-        cellTapped: CellTapAction?
+        headerViewModel: Header.ViewModel = .fallBack,
+        cellsViewModels: [Cell.ViewModel] = [],
+        cellTapped: CellTapAction? = nil
     ) {
         self.headerViewModel = headerViewModel
         self.cellsViewModels = cellsViewModels

@@ -7,15 +7,24 @@
 
 import UIKit
 
- public struct Rows<Cell: UITableViewCell>: PrimaryRowsMethods, HasFallBack, RegistersCells
+public struct Rows<Cell: UITableViewCell>: PrimaryRowsMethods, HasFallBack, RegistersCells
 where Cell: HasViewModel {
 
     public static var fallBack: Self { .init() }
 
     public typealias CellTapAction = (Cell.ViewModel, IndexPath) -> Void
 
-    var items: [Cell.ViewModel] = []
-    var tapped: CellTapAction?
+    public var items: [Cell.ViewModel] = []
+    public var tapped: CellTapAction?
+
+    public init(
+        items: [Cell.ViewModel] = [],
+        tapped: CellTapAction? = nil
+    ) {
+        self.items = items
+        self.tapped = tapped
+    }
+
     public var count: Int { items.count }
 
     public func registerCells(tableView: UITableView) {
@@ -37,5 +46,4 @@ where Cell: HasViewModel {
             viewModel: items[indexPath.row]
         )
     }
-
 }
