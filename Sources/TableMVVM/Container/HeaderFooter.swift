@@ -25,7 +25,7 @@ where View: HasViewModel,
 
      public typealias ViewModel = View.ViewModel
 
-    public var viewModel: ViewModel = ViewModel() {
+    public var viewModel: ViewModel = .fallBack {
         didSet {
             // Makes clear the stupid default background for UITableViewHeaderFooterView:
             // UISystemBackgroundView.

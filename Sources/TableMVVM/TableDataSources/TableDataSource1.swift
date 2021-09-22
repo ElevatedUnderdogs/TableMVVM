@@ -10,7 +10,7 @@ import UIKit
  public class TableDataSource1<
     Section0: PrimaryTableSectionMethods
 >: NSObject, UITableViewDataSource, UITableViewDelegate, HasRegistrationCandidates, HasTable
-where Section0: HasInit {
+where Section0: HasFallBack {
 
      public var table: UITableView?
      public var registerCandidates: [RegistersCells & RegistersHeader] { [section0] }
@@ -23,7 +23,7 @@ where Section0: HasInit {
 
     var queue: DispatchQueueType = DispatchQueue.main
 
-    var section0: Section0 = .init() {
+    var section0: Section0 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
 

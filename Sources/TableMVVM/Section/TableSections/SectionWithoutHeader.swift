@@ -8,10 +8,11 @@
 import UIKit
 
 /// ComposedRows can be `AlternatesRows`, `HasCells`,  `OneRow`, `Rows`
- public struct SectionWithoutHeader<ComposedRows>: ComposesRows, HasInit, HasNoHeader, RegistersCells
+public struct SectionWithoutHeader<ComposedRows>: ComposesRows, HasFallBack, HasNoHeader, RegistersCells
 where ComposedRows: PrimaryRowsMethods,
-      ComposedRows: HasInit,
+      ComposedRows: HasFallBack,
       ComposedRows: RegistersCells {
 
-       public  var rows: ComposedRows = .init()
+    public static var fallBack: Self { .init() }
+    public  var rows: ComposedRows = .fallBack
 }

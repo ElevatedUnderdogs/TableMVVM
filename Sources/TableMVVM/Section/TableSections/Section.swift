@@ -18,21 +18,23 @@ import UIKit
 ///           Cell: UITableViewCell,
 ///           Cell: HasViewModel {
 /// ```
-public struct Section<Header, Cell>: HasCells, HasInit, HasHeader, HasCount
+public struct Section<Header, Cell>: HasCells, HasFallBack, HasHeader, HasCount
 where Header: UITableViewHeaderFooterView,
       Header: HasViewModel,
-      Header.ViewModel: HasInit,
+      Header.ViewModel: HasFallBack,
       Cell: UITableViewCell,
       Cell: HasViewModel {
 
+    public static var fallBack: Self { .init() }
+
     public typealias Head = Header
 
-    public var headerViewModel: Header.ViewModel = .init()
+    public var headerViewModel: Header.ViewModel = .fallBack
     public var cellsViewModels: [Cell.ViewModel] = []
     public var cellTapped: CellTapAction?
 
     public init() {
-        self.headerViewModel = .init()
+        self.headerViewModel = .fallBack
         self.cellsViewModels = []
         self.cellTapped = nil
     }
@@ -55,10 +57,11 @@ public class TextView: UIView, HasViewModel, HasInit {
         public init() {
             self.string = "cats"
         }
+        public static var fallBack: Self { .init(string: "cats") }
         public init(string: String) {
             self.string = string
         }
     }
 
-    public var viewModel: ViewModel = .init()
+    public var viewModel: ViewModel = .fallBack
 }

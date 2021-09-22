@@ -8,8 +8,10 @@
 // If the package warns againts `UIKit`, make sure the simulator you are running is iOS. 
 import UIKit
 
-extension UIColor: HasInit {}
- public class ColorView: UIView, HasViewModel, HasInit {
+extension UIColor: HasInit {
+    public static var fallBack: Self { .init() }
+}
+ public class ColorView: UIView, HasViewModel {
 
      public typealias ViewModel = UIColor
 

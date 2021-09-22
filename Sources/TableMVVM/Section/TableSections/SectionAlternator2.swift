@@ -19,16 +19,18 @@ import UIKit
  public struct SectionAlternator2<
     Section1: PrimaryTableSectionMethods,
     Section2: PrimaryTableSectionMethods
->: PrimaryTableSectionMethods, HasInit, SectionAlternator, HasCount, HasRegistrationCandidates
-where Section1: HasInit,
-      Section2: HasInit {
+>: PrimaryTableSectionMethods, HasFallBack, SectionAlternator, HasCount, HasRegistrationCandidates
+where Section1: HasFallBack,
+      Section2: HasFallBack {
 
     public var count: Int {
         currentSection.count
     }
 
-    var section1: Section1 = .init()
-    var section2: Section2 = .init()
+    public static var fallBack: Self { .init() }
+
+    var section1: Section1 = .fallBack
+    var section2: Section2 = .fallBack
     public var registerCandidates: [RegistersCells & RegistersHeader] { [section1, section2] }
 
     public typealias AlternatingLogic = (Section1, Section2) -> PrimaryTableSectionMethods & HasCount

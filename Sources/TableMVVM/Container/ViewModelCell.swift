@@ -26,7 +26,7 @@ where View: HasViewModel,
 
      public typealias ViewModel = View.ViewModel
 
-    public var viewModel: ViewModel = ViewModel() {
+    public var viewModel: ViewModel = .fallBack {
         didSet {
             contentView.inject(view: view)
             view.viewModel = viewModel

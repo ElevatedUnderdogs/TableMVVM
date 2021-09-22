@@ -11,8 +11,8 @@ import UIKit
     Section0: PrimaryTableSectionMethods,
     Section1: PrimaryTableSectionMethods
 >: NSObject, UITableViewDataSource, UITableViewDelegate, HasRegistrationCandidates, HasTable
-where Section0: HasInit,
-      Section1: HasInit {
+where Section0: HasFallBack,
+      Section1: HasFallBack {
 
     public var table: UITableView?
 
@@ -27,11 +27,11 @@ where Section0: HasInit,
 
     public var registerCandidates: [RegistersCells & RegistersHeader] { [section0, section1] }
 
-    var section0: Section0 = .init() {
+    var section0: Section0 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
 
-    var section1: Section1 = .init() {
+    var section1: Section1 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
 

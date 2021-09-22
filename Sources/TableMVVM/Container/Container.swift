@@ -8,7 +8,7 @@
 import UIKit
 
 
- public class Container<Contained: UIView>: UIView, HasViewModel, HasInit
+ public class Container<Contained: UIView>: UIView, HasViewModel
 where Contained: HasViewModel,
       Contained.ViewModel: HasInit {
 
@@ -21,8 +21,9 @@ where Contained: HasViewModel,
         }
     }
 
-     public struct ViewModel: HasInit {
+     public struct ViewModel: HasFallBack {
         public var insets: UIEdgeInsets = .zero
-        public var viewModel: Contained.ViewModel = .init()
+        public var viewModel: Contained.ViewModel = .fallBack
+        public static var fallBack: Self { .init() }
     }
 }

@@ -7,8 +7,10 @@
 
 import UIKit
 
- public struct Rows<Cell: UITableViewCell>: PrimaryRowsMethods, HasInit, RegistersCells
+ public struct Rows<Cell: UITableViewCell>: PrimaryRowsMethods, HasFallBack, RegistersCells
 where Cell: HasViewModel {
+
+    public static var fallBack: Self { .init() }
 
     public typealias CellTapAction = (Cell.ViewModel, IndexPath) -> Void
 

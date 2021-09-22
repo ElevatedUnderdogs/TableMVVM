@@ -14,11 +14,11 @@ import UIKit
     Section3: PrimaryTableSectionMethods,
     Section4: PrimaryTableSectionMethods
 >: NSObject, UITableViewDataSource, UITableViewDelegate, HasRegistrationCandidates, HasTable
-where Section0: HasInit,
-      Section1: HasInit,
-      Section2: HasInit,
-      Section3: HasInit,
-      Section4: HasInit {
+where Section0: HasFallBack,
+      Section1: HasFallBack,
+      Section2: HasFallBack,
+      Section3: HasFallBack,
+      Section4: HasFallBack {
 
     public var table: UITableView?
 
@@ -40,19 +40,19 @@ where Section0: HasInit,
         [section0, section1, section2, section3, section4]
     }
     var queue: DispatchQueueType = DispatchQueue.main
-    var section0: Section0 = .init() {
+    var section0: Section0 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section1: Section1 = .init() {
+    var section1: Section1 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section2: Section2 = .init() {
+    var section2: Section2 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section3: Section3 = .init() {
+    var section3: Section3 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section4: Section4 = .init() {
+    var section4: Section4 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
 

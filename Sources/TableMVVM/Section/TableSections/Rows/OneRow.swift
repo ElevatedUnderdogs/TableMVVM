@@ -7,15 +7,15 @@
 
 import UIKit
 
- public struct OneRow<Cell: UITableViewCell>: PrimaryRowsMethods, HasInit, RegistersCells
+public struct OneRow<Cell: UITableViewCell>: PrimaryRowsMethods, HasFallBack, RegistersCells
 where Cell: HasViewModel,
-      Cell.ViewModel: HasInit {
+      Cell.ViewModel: HasFallBack {
 
-
+    public static var fallBack: Self { .init() }
 
     public var count: Int { 1 }
 
-    var item: Cell.ViewModel = .init()
+    var item: Cell.ViewModel = .fallBack
 
     var tapped: CellTapAction?
 

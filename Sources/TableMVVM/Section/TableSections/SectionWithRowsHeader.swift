@@ -12,14 +12,15 @@ import UIKit
  public struct SectionWithRowsHeader<
     ComposedHeader,
     ComposedRows
->: ComposesRows, HasInit, ComposesHeader, RegistersCells, RegistersHeader
+>: ComposesRows, HasFallBack, ComposesHeader, RegistersCells, RegistersHeader
 where ComposedHeader: PrimaryHeaderMethods,
-      ComposedHeader: HasInit,
+      ComposedHeader: HasFallBack,
       ComposedHeader: RegistersHeader,
       ComposedRows: PrimaryRowsMethods,
-      ComposedRows: HasInit,
+      ComposedRows: HasFallBack,
       ComposedRows: RegistersCells {
-
-    public var header: ComposedHeader = .init()
-    public var rows: ComposedRows = .init()
+    
+    public static var fallBack: Self { .init() }
+    public var header: ComposedHeader = .fallBack
+    public var rows: ComposedRows = .fallBack
 }

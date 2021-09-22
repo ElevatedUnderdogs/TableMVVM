@@ -13,11 +13,11 @@ import UIKit
 ///    where Cell: UITableViewCell,
 ///    Cell: HasViewModel
 /// ```
-public struct SectionNoHeader<Cell>: HasCells, HasInit, HasNoHeader, HasCount
+public struct SectionNoHeader<Cell>: HasCells, HasFallBack, HasNoHeader, HasCount
 where Cell: UITableViewCell,
       Cell: HasViewModel {
 
-         public var cellsViewModels: [Cell.ViewModel] = []
-         public var cellTapped: CellTapAction?
-
+    public var cellsViewModels: [Cell.ViewModel] = []
+    public var cellTapped: CellTapAction?
+    public static var fallBack: Self { .init() }
 }
