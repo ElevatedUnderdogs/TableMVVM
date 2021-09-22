@@ -34,4 +34,7 @@ where Section1: HasInit,
     public typealias AlternatingLogic = (Section1, Section2) -> PrimaryTableSectionMethods & HasCount
     var alternatingLogic: AlternatingLogic?
 
+    public var currentSection: PrimaryTableSectionMethods & HasCount {
+        alternatingLogic?(section1, section2) ?? section1
+    }
 }
