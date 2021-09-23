@@ -7,6 +7,11 @@
 
 import UIKit
 
+/// It would have been ideal to have just `HasInit`
+/// Because `HasInit`, plays well with `UIView`s
+/// and with synthesized initializers with structs.  The problem
+/// is that synthesized struct initializers are internal and
+/// don't become public even when the properties are labeled public.
 public protocol HasFallBack {
     static var fallBack: Self { get }
 }
