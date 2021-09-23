@@ -12,7 +12,7 @@ import UIKit
 /// This becomes problematic when you need to use that view separately.  So then you either duplicate the code
 /// or have to refactor out the view from the cell so that it can be used separately from a `UITableViewCell` and
 /// as a subview to a `UItableviewCell`.
- public class HeaderFooter<View: UIView>: UITableViewHeaderFooterView, HasViewModel, HasInit
+ public class HeaderFooter<View: UIView>: UITableViewHeaderFooterView, HasViewModel
 where View: HasViewModel,
       View.ViewModel: HasInit {
 
