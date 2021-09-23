@@ -130,7 +130,7 @@ class TestMisc: XCTestCase {
 
     func testTableMVVM() {
 
-        let viewModel: TableMVVM<TableDS>.ViewModel = .init(
+        let viewModel: UITableMVVM<TableDS>.ViewModel = .init(
             section0: .init(
                 rows: .init(
                     items: [.init(string: "1"), .init(string: "2"), .init(string: "3")],
@@ -138,14 +138,14 @@ class TestMisc: XCTestCase {
                 )
             )
         )
-        let table: TableMVVM<TableDS> = .init(viewModel: viewModel)
+        let table: UITableMVVM<TableDS> = .init(viewModel: viewModel)
         XCTAssertEqual(table.frame, .zero)
         XCTAssertEqual(table.viewModel, viewModel)
         XCTAssertEqual(table.viewModel?.table, table)
         XCTAssertNotNil(table.delegate)
         XCTAssertNotNil(table.dataSource)
-        XCTAssertEqual(table.delegate as? TableMVVM<TableDS>.ViewModel, viewModel)
-        XCTAssertEqual(table.dataSource as? TableMVVM<TableDS>.ViewModel, viewModel)
+        XCTAssertEqual(table.delegate as? UITableMVVM<TableDS>.ViewModel, viewModel)
+        XCTAssertEqual(table.dataSource as? UITableMVVM<TableDS>.ViewModel, viewModel)
         XCTAssertNotNil(table.viewModel?.tableView(table, cellForRowAt: .zero))
         XCTAssertNotNil(table.viewModel?.tableView(table, cellForRowAt: .zero) as? CellTF)
         XCTAssertEqual(
@@ -163,7 +163,7 @@ class TestMisc: XCTestCase {
             table.presentationViewModel?.section0.rows.items.map(\.string),
             TableDS(section0: .init()).section0.rows.items.map(\.string)
         )
-        XCTAssertNil(TableMVVM<TableDS>.init(coder: .init()))
+        XCTAssertNil(UITableMVVM<TableDS>.init(coder: .init()))
     }
 
     func testHasHeader() {

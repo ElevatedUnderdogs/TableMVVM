@@ -110,7 +110,7 @@ class TestDataSource2: XCTestCase {
 
     func testOutsideBounds() {
         let dataSource: SimpleDS3 = SimpleDS3.fallBack()
-        let table = TableMVVM<SimpleDS3>()
+        let table = UITableMVVM<SimpleDS3>()
         dataSource.registerCells(tableView: table)
         XCTAssertNotNil(dataSource.tableView(table, cellForRowAt: .init(item: 0, section: 3)))
         XCTAssertFalse(

@@ -161,7 +161,7 @@ class TestDataSource7: XCTestCase {
 
     func testTableDataSource1cellForRowAt0() {
         let dataSource: SimpleDS7 = SimpleDS7.fallBack()
-        let table = TableMVVM<SimpleDS7>()
+        let table = UITableMVVM<SimpleDS7>()
         dataSource.registerCells(tableView: table)
         XCTAssertTrue(dataSource.tableView(table, cellForRowAt: .init(item: 0, section: 0)) is CellTF)
         XCTAssertTrue(dataSource.tableView(table, cellForRowAt: .init(item: 0, section: 1)) is CellCV)
@@ -174,7 +174,7 @@ class TestDataSource7: XCTestCase {
 
     func testOutsideBounds() {
         let dataSource: SimpleDS7 = SimpleDS7.fallBack()
-        let table = TableMVVM<SimpleDS7>()
+        let table = UITableMVVM<SimpleDS7>()
         dataSource.registerCells(tableView: table)
         XCTAssertNotNil(dataSource.tableView(table, cellForRowAt: .init(item: 0, section: 8)))
         XCTAssertFalse(
