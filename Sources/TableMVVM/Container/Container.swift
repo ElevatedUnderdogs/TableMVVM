@@ -10,7 +10,7 @@ import UIKit
 
 public class Container<Contained: UIView>: UIView, HasViewModel
 where Contained: HasViewModel,
-      Contained.ViewModel: HasInit {
+      Contained.ViewModel: HasFallBack {
 
     var view: Contained = .init(frame: .zero)
 
