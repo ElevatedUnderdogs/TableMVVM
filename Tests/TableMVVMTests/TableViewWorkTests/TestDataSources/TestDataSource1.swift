@@ -114,7 +114,7 @@ class TestDataSource1: XCTestCase {
 
     func testTableDataSource1cellForRowAt0() {
         let dataSource: TableDS = TableDS(section0: .fallBack { _, _ in })
-        let table = TableMVVM<TableDS>()
+        let table = UITableMVVM<TableDS>()
         dataSource.registerCells(tableView: table)
         let cell = dataSource.tableView(table, cellForRowAt: .init(row: 0, section: 0))
         XCTAssertTrue(cell is ViewModelCell<TextView>)

@@ -10,7 +10,7 @@ import UIKit
 /// Example:
 /// `typealias MyDataSource = TableDataSource1<SectionNoHeader<ColorCell>>`
 /// `TableMVVM<MyDataSource>`
-public class TableMVVM<ViewModel>: UITableView
+public class UITableMVVM<ViewModel>: UITableView
 where ViewModel: UITableViewDataSource,
       ViewModel: UITableViewDelegate,
       ViewModel: RegistersCells,
