@@ -26,3 +26,5 @@ extension HasInit {
 extension UIView: HasFallBack {
     public static var fallBack: Self { .init(frame: .zero) }
 }
+
+extension UIView: HasInit {}

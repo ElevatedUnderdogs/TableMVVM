@@ -50,7 +50,7 @@ where Header: UITableViewHeaderFooterView,
     }
 }
 
-public class TextView: UIView, HasViewModel, HasInit {
+public class TextView: UIView, HasViewModel {
 
     public struct ViewModel: HasInit {
         var string: String = "cats"
