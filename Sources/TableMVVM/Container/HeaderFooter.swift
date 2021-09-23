@@ -14,7 +14,7 @@ import UIKit
 /// as a subview to a `UItableviewCell`.
  public class HeaderFooter<View: UIView>: UITableViewHeaderFooterView, HasViewModel
 where View: HasViewModel,
-      View.ViewModel: HasInit {
+      View.ViewModel: HasFallBack {
 
     var view: View = .init(frame: .zero)
 

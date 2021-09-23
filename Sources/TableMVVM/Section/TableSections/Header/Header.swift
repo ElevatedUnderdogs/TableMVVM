@@ -9,7 +9,7 @@ import UIKit
 
 public struct Header<Head: UITableViewHeaderFooterView>: HasHeader, RegistersHeader, HasInit
 where Head: HasViewModel,
-      Head.ViewModel: HasInit {
+      Head.ViewModel: HasFallBack {
 
     public var headerViewModel: Head.ViewModel = .fallBack
     public init() {

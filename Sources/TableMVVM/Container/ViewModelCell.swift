@@ -15,7 +15,7 @@ import UIKit
 /// ViewModelCell automatically lets you inject a view into a TableViewCell
  public class ViewModelCell<View: UIView>: UITableViewCell, HasViewModel
 where View: HasViewModel,
-      View.ViewModel: HasInit {
+      View.ViewModel: HasFallBack {
 
     var view: View = .init(frame: .zero)
 
