@@ -40,7 +40,7 @@ where ViewModel: UITableViewDataSource,
 
     var presentationLogic: ((ViewModel?) -> ViewModel)?
 
-    var viewModel: ViewModel? {
+    public var viewModel: ViewModel? {
         didSet {
             self.presentationViewModel = presentationLogic?(viewModel) ?? viewModel
         }
