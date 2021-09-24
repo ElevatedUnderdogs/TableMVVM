@@ -10,7 +10,7 @@ import UIKit
 /// inherited by: `Section`, `Header`
 public protocol HasHeader: PrimaryHeaderMethods, RegistersHeader {
     associatedtype Head: UITableViewHeaderFooterView, HasViewModel
-    var headerViewModel: Head.ViewModel { get }
+    var viewModel: Head.ViewModel { get }
 }
 
 extension HasHeader {
@@ -23,7 +23,7 @@ extension HasHeader {
     public func tableViewViewForHeader(_ tableView: UITableView) -> UIView? {
         tableView.dequeueReusableHeaderFooterView(
             section: Head(),
-            viewModel: headerViewModel
+            viewModel: viewModel
         )
     }
     

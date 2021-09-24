@@ -13,7 +13,7 @@ class TestMisc: XCTestCase {
     func testcomposesRows() {
         let headerText = "Header me!"
         let section: Section0 = .init(
-            header: .init(headerViewModel: .init(string: headerText)),
+            header: .init(viewModel: .init(string: headerText)),
             rows: .init(
                 item: .cyan,
                 tapped: { _, _ in }
@@ -168,7 +168,7 @@ class TestMisc: XCTestCase {
 
     func testHasHeader() {
         let table = UITableView()
-        let header: Header<HeaderTF> = .init(headerViewModel: .init(string: "bushes"))
+        let header: Header<HeaderTF> = .init(viewModel: .init(string: "bushes"))
         XCTAssertNil((header.tableViewViewForHeader(.init()) as? TextView)?.viewModel.string)
         XCTAssertEqual(header.tableViewHeightForHeaderInSection(.init()), -1)
         header.registerHeader(tableView: table)

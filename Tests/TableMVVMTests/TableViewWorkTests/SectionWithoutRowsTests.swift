@@ -23,11 +23,11 @@ class SectionWithoutRowsTests: XCTestCase {
 
     func testSectionDefaults() {
         let fallBack = SectionWithoutRows<TheHeader>.fallBack
-        print(fallBack.header.headerViewModel)
+        print(fallBack.header.viewModel)
         let other = SectionWithoutRows<TheHeader>(header: .fallBack)
-        print(other.header.headerViewModel)
-        XCTAssertEqual(fallBack.header.headerViewModel.string, other.header.headerViewModel.string)
-        XCTAssertEqual(other.header.headerViewModel.string, "cats")
-        XCTAssertEqual(fallBack.header.headerViewModel.string, "cats")
+        print(other.header.viewModel)
+        XCTAssertEqual(fallBack.header.viewModel.string, other.header.viewModel.string)
+        XCTAssertEqual(other.header.viewModel.string, "cats")
+        XCTAssertEqual(fallBack.header.viewModel.string, "cats")
     }
 }
