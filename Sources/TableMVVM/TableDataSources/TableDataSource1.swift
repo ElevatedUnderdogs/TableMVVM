@@ -22,9 +22,9 @@ where Section0: HasFallBack {
         self.section0 = section0
     }
 
-    var queue: DispatchQueueType = DispatchQueue.main
+    public var queue: DispatchQueueType = DispatchQueue.main
 
-    var section0: Section0 = .fallBack {
+    public var section0: Section0 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
 

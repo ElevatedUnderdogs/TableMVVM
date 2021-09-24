@@ -15,9 +15,9 @@ where Cell: HasViewModel,
 
     public var count: Int { 1 }
 
-    var item: Cell.ViewModel = .fallBack
+    public var item: Cell.ViewModel = .fallBack
 
-    var tapped: CellTapAction?
+    public var tapped: CellTapAction?
 
     public init(item: Cell.ViewModel = .fallBack, tapped: CellTapAction? = nil) {
         self.item = item
