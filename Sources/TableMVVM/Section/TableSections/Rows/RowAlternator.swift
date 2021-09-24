@@ -36,3 +36,21 @@ where Rows1: HasFallBack,
         self.alternatingLogic = alternatingLogic
     }
 }
+
+extension RowAlternator2 where Rows1: HasIsEmpty {
+
+    public init(
+        rows1: Rows1 = .fallBack,
+        rows2: Rows2 = .fallBack
+    ) {
+        self.rows1 = rows1
+        self.rows2 = rows2
+        self.alternatingLogic = { rows1, rows2 in
+            if rows1.isEmpty {
+                return rows2
+            } else {
+                return rows1
+            }
+        }
+    }
+}

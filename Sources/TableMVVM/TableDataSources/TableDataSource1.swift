@@ -7,8 +7,12 @@
 
 import UIKit
 
-public class TableDataSource1<Section0: PrimaryTableSectionMethods>: TableDataSourceAndDelegate, HasFallBack
+public class TableDataSource1<Section0: PrimaryTableSectionMethods>: TableDataSourceAndDelegate, HasFallBack, HasIsEmpty
 where Section0: HasFallBack {
+
+    public var isEmpty: Bool {
+        section0.count == 0
+    }
 
     public static var fallBack: Self { .init() }
 

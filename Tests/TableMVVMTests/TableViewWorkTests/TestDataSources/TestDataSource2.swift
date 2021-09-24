@@ -11,6 +11,27 @@ import XCTest
 /// Tests to efficiently reach multiple components
 class TestDataSource2: XCTestCase {
 
+    func testDataSourceIsEmpty() {
+        let dataSource: SimpleDS8 = SimpleDS8.fallBack
+        dataSource.section0.cellsViewModels = []
+        dataSource.section1.cellsViewModels = []
+        dataSource.section2.cellsViewModels = []
+        dataSource.section3.cellsViewModels = []
+
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = [.init(string: "cats")]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section1.cellsViewModels = [.black]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section1.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section3.cellsViewModels = [.black]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section3.cellsViewModels = []
+    }
+
     func testTableDataSource1DidSelectRowsAT() {
         var testMe: String?
         var colorMe: UIColor?
