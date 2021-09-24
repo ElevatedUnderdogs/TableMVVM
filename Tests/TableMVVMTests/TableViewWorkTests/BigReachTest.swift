@@ -46,7 +46,7 @@ class BigReachTests: XCTestCase {
                     }
                 ),
                 section2: SecondAlternatingSection(
-                    header: .init(headerViewModel: .init(string: "dogs")),
+                    header: .init(viewModel: .init(string: "dogs")),
                     rows: .init(item: .cyan, tapped: { colorVM, indexPath in
                         secondVM = colorVM
                         secondIndexPath = indexPath
@@ -57,7 +57,7 @@ class BigReachTests: XCTestCase {
                 }
             ),
             section1: NextSection(
-                header: Header1(headerViewModel: .init(string: "wow")),
+                header: Header1(viewModel: .init(string: "wow")),
                 rows: .init(items: [.black, .red, .yellow], tapped: { colorViewModel, indexPath in
                     thirdVM = colorViewModel
                     thirdIndexPath = indexPath

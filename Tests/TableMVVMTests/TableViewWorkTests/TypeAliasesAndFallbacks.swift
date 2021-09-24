@@ -24,7 +24,7 @@ func useSection0(
     tapColor: OneRow<ViewModelCell<ColorView>>.CellTapAction?
 ) -> Section0 {
     Section0(
-        header: .init(headerViewModel: .init(string: "HeaderBoo")),
+        header: .init(viewModel: .init(string: "HeaderBoo")),
         rows: .init(item: .blue, tapped: tapColor)
     )
 }

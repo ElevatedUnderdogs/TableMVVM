@@ -29,12 +29,12 @@ where Header: UITableViewHeaderFooterView,
 
     public typealias Head = Header
 
-    public var headerViewModel: Header.ViewModel = .fallBack
+    public var viewModel: Header.ViewModel = .fallBack
     public var cellsViewModels: [Cell.ViewModel] = []
     public var cellTapped: CellTapAction?
 
     public init() {
-        self.headerViewModel = .fallBack
+        self.viewModel = .fallBack
         self.cellsViewModels = []
         self.cellTapped = nil
     }
@@ -44,7 +44,7 @@ where Header: UITableViewHeaderFooterView,
         cellsViewModels: [Cell.ViewModel] = [],
         cellTapped: CellTapAction? = nil
     ) {
-        self.headerViewModel = headerViewModel
+        self.viewModel = headerViewModel
         self.cellsViewModels = cellsViewModels
         self.cellTapped = cellTapped
     }
