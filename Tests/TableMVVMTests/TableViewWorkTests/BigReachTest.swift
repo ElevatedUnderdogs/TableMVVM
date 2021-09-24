@@ -74,7 +74,7 @@ class BigReachTests: XCTestCase {
         XCTAssertNil(thirdIndexPath)
 
         XCTAssertNil(abc.table)
-        abc.set(table: UITableView())
+        abc.table = .init()
         XCTAssertNotNil(abc.table)
         XCTAssertEqual(abc.numberOfSections(in: UITableView()), 2)
     }

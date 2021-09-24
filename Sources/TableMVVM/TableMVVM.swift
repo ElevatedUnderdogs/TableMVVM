@@ -23,7 +23,7 @@ where ViewModel: UITableViewDataSource,
     ) {
         self.init(frame: .zero)
         self.viewModel = viewModel
-        self.viewModel?.set(table: self)
+        self.viewModel?.table = self
         self.presentationLogic = presentationLogic
         self.presentationViewModel = presentationLogic?(viewModel) ?? viewModel
         assert(presentationViewModel != nil)

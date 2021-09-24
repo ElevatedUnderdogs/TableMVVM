@@ -10,7 +10,7 @@ import UIKit
 public class TableDataSource2<
     Section0: PrimaryTableSectionMethods,
     Section1: PrimaryTableSectionMethods
->: NSObject, UITableViewDataSource, UITableViewDelegate, HasRegistrationCandidates, HasTable, HasFallBack
+>: TableDataSourceAndDelegate, HasFallBack
 where Section0: HasFallBack,
       Section1: HasFallBack {
     

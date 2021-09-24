@@ -8,7 +8,11 @@
 import UIKit
 
 /// ComposedRows can be `AlternatesRows`, `HasCells`,  `OneRow`, `Rows`
-public struct SectionWithoutHeader<ComposedRows>: ComposesRows, HasFallBack, HasNoHeader, RegistersCells
+public struct SectionWithoutHeader<ComposedRows>:
+    ComposesRows,
+    HasFallBack,
+    HasNoHeader,
+    RegistersCells
 where ComposedRows: PrimaryRowsMethods,
       ComposedRows: HasFallBack,
       ComposedRows: RegistersCells {
