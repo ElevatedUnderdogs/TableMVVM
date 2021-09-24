@@ -44,7 +44,7 @@ class DataSourceAlternatorTests: XCTestCase {
     }
 
     func testDefaultDatasources() {
-        let ds = DataSource()
+        let ds = DataSource(alternatingLogic: nil)
         XCTAssertEqual(ds.dataSource1.section0.rows.item.string, "cats")
     }
 
@@ -54,7 +54,7 @@ class DataSourceAlternatorTests: XCTestCase {
     }
 
     func testInit() {
-        let ds = DataSource()
+        let ds = DataSource(alternatingLogic: nil)
         XCTAssertEqual(ds.dataSource1.section0.rows.item.string, "cats")
     }
 

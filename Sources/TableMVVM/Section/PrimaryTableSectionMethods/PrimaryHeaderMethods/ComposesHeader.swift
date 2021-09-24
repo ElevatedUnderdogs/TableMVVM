@@ -10,8 +10,8 @@ import UIKit
 /// Could be used for alternating headers as the public protocol.
 /// inherited by: `SectionWithRowsHeader`
 public protocol ComposesHeader: PrimaryHeaderMethods {
-    associatedtype Header: PrimaryHeaderMethods
-    var header: Header { get }
+    associatedtype ComposedHeader: PrimaryHeaderMethods
+    var header: ComposedHeader { get }
 }
 
 extension ComposesHeader {
@@ -25,7 +25,7 @@ extension ComposesHeader {
     }
 }
 
-extension ComposesHeader where Header: RegistersHeader {
+extension ComposesHeader where ComposedHeader: RegistersHeader {
     
     public func registerHeader(tableView: UITableView) {
         header.registerHeader(tableView: tableView)

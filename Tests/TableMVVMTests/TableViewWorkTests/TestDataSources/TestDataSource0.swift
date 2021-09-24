@@ -25,6 +25,14 @@ extension SimpleDS3 {
 /// Tests to efficiently reach multiple components
 class TestDataSource3: XCTestCase {
 
+    func testDataSource0IsEmpty() {
+        let dataSource: SimpleDS1 = SimpleDS1.fallBack
+        dataSource.section0.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = [.init(string: "cats")]
+        XCTAssertFalse(dataSource.isEmpty)
+    }
+
     // MARK: - TableDataSource1
     func testTableDataSource1ReloadData() {
         let dataSource: SimpleDS3 = SimpleDS3.fallBack()

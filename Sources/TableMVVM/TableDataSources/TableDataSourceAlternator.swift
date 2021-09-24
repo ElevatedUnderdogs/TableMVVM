@@ -23,7 +23,7 @@ public class DataSourceAlternator<
         }
     }
 
-    public static var fallBack: Self { .init() }
+    public static var fallBack: Self { .init(alternatingLogic: nil) }
 
     public var dataSource1: DataSource1 = .fallBack
     public var dataSource2: DataSource2 = .fallBack
@@ -35,10 +35,16 @@ public class DataSourceAlternator<
         alternatingLogic?(dataSource1, dataSource2) ?? dataSource1
     }
 
+    /// May redirect away from this initializer for alternative default alternative
+    /// logic based on metatypes conforming to diffirent protocols
+    /// - Parameters:
+    ///   - dataSource1: Default dataSource
+    ///   - dataSource2: Backup dataSource
+    ///   - alternatingLogic: logic to determine which dataSource to show.
     public required init(
         dataSource1: DataSource1 = .fallBack,
         dataSource2: DataSource2 = .fallBack,
-        alternatingLogic: AlternatingLogic? = nil
+        alternatingLogic: AlternatingLogic?
     ) {
         self.dataSource1 = dataSource1
         self.dataSource2 = dataSource2
@@ -67,5 +73,24 @@ public class DataSourceAlternator<
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         currentDataSource.tableView(tableView, cellForRowAt: indexPath)
+    }
+}
+
+extension DataSourceAlternator where DataSource1: HasIsEmpty {
+
+    public convenience init(
+        dataSource1: DataSource1 = .fallBack,
+        dataSource2: DataSource2 = .fallBack
+    ) {
+        self.init(
+            dataSource1: dataSource1,
+            dataSource2: dataSource2
+        ) { ds1, ds2 in
+            if ds1.isEmpty {
+                return ds2
+            } else {
+                return ds1
+            }
+        }
     }
 }

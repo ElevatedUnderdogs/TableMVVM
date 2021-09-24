@@ -13,7 +13,7 @@ public class TableDataSource5<
     Section2: PrimaryTableSectionMethods,
     Section3: PrimaryTableSectionMethods,
     Section4: PrimaryTableSectionMethods
->: TableDataSourceAndDelegate, HasFallBack
+>: TableDataSourceAndDelegate, HasFallBack, HasIsEmpty
 where Section0: HasFallBack,
       Section1: HasFallBack,
       Section2: HasFallBack,
@@ -21,7 +21,14 @@ where Section0: HasFallBack,
       Section4: HasFallBack {
     
     public static var fallBack: Self { .init() }
-    
+
+    public var isEmpty: Bool {
+        section0.count == 0 &&
+            section1.count == 0 &&
+            section2.count == 0 &&
+            section3.count == 0 &&
+            section4.count == 0
+    }
     
     public var table: UITableView?
     

@@ -11,10 +11,16 @@ public class TableDataSource3<
     Section0: PrimaryTableSectionMethods,
     Section1: PrimaryTableSectionMethods,
     Section2: PrimaryTableSectionMethods
->: TableDataSourceAndDelegate, HasFallBack
+>: TableDataSourceAndDelegate, HasFallBack, HasIsEmpty
 where Section0: HasFallBack,
       Section1: HasFallBack,
       Section2: HasFallBack {
+
+    public var isEmpty: Bool {
+        section0.count == 0 &&
+            section1.count == 0 &&
+            section2.count == 0 
+    }
     
     public static var fallBack: Self { .init() }
     

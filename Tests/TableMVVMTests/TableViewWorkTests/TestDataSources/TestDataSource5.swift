@@ -32,6 +32,29 @@ extension SimpleDS6 {
 /// Tests to efficiently reach multiple components
 class TestDataSource6: XCTestCase {
 
+    func testDataSourceIsEmpty() {
+        let dataSource: SimpleDS8 = SimpleDS8.fallBack
+        dataSource.section0.cellsViewModels = []
+        dataSource.section1.cellsViewModels = []
+        dataSource.section2.cellsViewModels = []
+        dataSource.section3.cellsViewModels = []
+        dataSource.section4.cellsViewModels = []
+        dataSource.section5.cellsViewModels = []
+
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = [.init(string: "cats")]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section1.cellsViewModels = [.black]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section1.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section5.cellsViewModels = [.red]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section5.cellsViewModels = []
+    }
+
     // MARK: - TableDataSource1
     func testTableDataSource1ReloadData() {
         let dataSource: SimpleDS6 = SimpleDS6.fallBack()

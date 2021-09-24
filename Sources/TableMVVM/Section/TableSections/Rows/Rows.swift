@@ -7,8 +7,12 @@
 
 import UIKit
 
-public struct Rows<Cell: UITableViewCell>: PrimaryRowsMethods, HasFallBack, RegistersCells
+public struct Rows<Cell: UITableViewCell>: PrimaryRowsMethods, HasFallBack, RegistersCells, HasIsEmpty
 where Cell: HasViewModel {
+    
+    public var isEmpty: Bool {
+        items.isEmpty
+    }
 
     public static var fallBack: Self { .init() }
 
