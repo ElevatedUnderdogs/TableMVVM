@@ -16,7 +16,7 @@ public class TableDataSource8<
     Section5: PrimaryTableSectionMethods,
     Section6: PrimaryTableSectionMethods,
     Section7: PrimaryTableSectionMethods
->: NSObject, UITableViewDataSource, UITableViewDelegate, HasRegistrationCandidates, HasTable, HasFallBack
+>: TableDataSourceAndDelegate, HasFallBack
 where Section0: HasFallBack,
       Section1: HasFallBack,
       Section2: HasFallBack,

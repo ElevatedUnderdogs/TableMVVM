@@ -33,12 +33,6 @@ public protocol HasTable: AnyObject {
     var table: UITableView? { get set }
 }
 
-extension HasTable {
-    public func set(table: UITableView) {
-        self.table = table
-    }
-}
-
 public protocol HasViewModel {
     
     associatedtype ViewModel
