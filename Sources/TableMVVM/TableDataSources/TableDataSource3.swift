@@ -32,17 +32,17 @@ where Section0: HasFallBack,
     
     public var registerCandidates: [RegistersCells & RegistersHeader] { [section0, section1, section2] }
     
-    var queue: DispatchQueueType = DispatchQueue.main
+    public var queue: DispatchQueueType = DispatchQueue.main
     
-    var section0: Section0 = .fallBack {
+    public var section0: Section0 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
     
-    var section1: Section1 = .fallBack {
+    public var section1: Section1 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
     
-    var section2: Section2 = .fallBack {
+    public var section2: Section2 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
     

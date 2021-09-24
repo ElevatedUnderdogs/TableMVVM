@@ -54,30 +54,37 @@ where Section0: HasFallBack,
         [section0, section1, section2, section3, section4, section5, section6, section7]
     }
     
-    var queue: DispatchQueueType = DispatchQueue.main
+    public var queue: DispatchQueueType = DispatchQueue.main
     
-    var section0: Section0 = .fallBack {
+    public var section0: Section0 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section1: Section1 = .fallBack {
+
+    public var section1: Section1 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section2: Section2 = .fallBack {
+
+    public var section2: Section2 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section3: Section3 = .fallBack {
+
+    public var section3: Section3 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section4: Section4 = .fallBack {
+
+    public var section4: Section4 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section5: Section5 = .fallBack {
+
+    public var section5: Section5 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section6: Section6 = .fallBack {
+
+    public var section6: Section6 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-    var section7: Section7 = .fallBack {
+
+    public var section7: Section7 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
     
