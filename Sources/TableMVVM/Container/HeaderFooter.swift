@@ -29,9 +29,12 @@ where View: HasViewModel,
         didSet {
             // Makes clear the stupid default background for UITableViewHeaderFooterView:
             // UISystemBackgroundView.
-            allSubViews.forEach { $0.backgroundColor = .clear }
-            contentView.inject(view: view)
-            view.viewModel = viewModel
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+                self.allSubViews.forEach { $0.backgroundColor = .clear }
+                self.contentView.inject(view: self.view)
+                self.view.viewModel = self.viewModel
+            }
         }
     }
 }
