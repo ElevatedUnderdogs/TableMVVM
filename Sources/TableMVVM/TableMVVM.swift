@@ -33,9 +33,11 @@ where ViewModel: UITableViewDataSource,
         dataSource = presentationViewModel
         assert(delegate != nil)
         assert(dataSource != nil)
-        DispatchQueue.main.async(execute: reloadData)
-        separatorColor = .clear
-        tableFooterView = UIView()
+        DispatchQueue.main.async {
+            self.reloadData()
+            self.separatorColor = .clear
+            self.tableFooterView = UIView()
+        }
     }
 
     public typealias ViewModel = ViewModel
