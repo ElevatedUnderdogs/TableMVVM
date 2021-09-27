@@ -33,6 +33,10 @@ where Cell: HasViewModel,
 
     public var tapped: CellTapAction?
 
+    /// Initializes a OneRow
+    /// - Parameters:
+    ///   - item: The item is the same as viewModel
+    ///   - tapped: action when the cell is tapped.
     public init(item: Cell.ViewModel = .fallBack, tapped: CellTapAction? = nil) {
         self.item = item
         self.tapped = tapped
