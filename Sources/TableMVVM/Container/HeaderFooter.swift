@@ -31,7 +31,7 @@ where View: HasViewModel,
             // UISystemBackgroundView.
             contentView.inject(view: view)
             subviews.first?.backgroundColor = .clear
-            subviews.first?.subviews.first?.backgroundColor = .clear
+            subviews.first?.allSubViews.forEach { $0.backgroundColor = .clear }
             view.viewModel = viewModel
         }
     }
