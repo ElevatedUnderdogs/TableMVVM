@@ -56,7 +56,11 @@ where ViewModel: UITableViewDataSource,
             dataSource = presentationViewModel
             presentationViewModel?.registerCells(tableView: self)
             presentationViewModel?.registerHeader(tableView: self)
-            DispatchQueue.main.async(execute: reloadData)
+            DispatchQueue.main.async {
+                self.reloadData()
+                self.separatorColor = .clear
+                self.tableFooterView = UIView()
+            }
         }
     }
 
