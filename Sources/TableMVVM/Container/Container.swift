@@ -17,6 +17,7 @@ where Contained: HasViewModel,
         didSet {
             inject(view: view, insets: viewModel.insets)
             view.viewModel = viewModel.viewModel
+            backgroundColor = .clear
         }
     }
 }
