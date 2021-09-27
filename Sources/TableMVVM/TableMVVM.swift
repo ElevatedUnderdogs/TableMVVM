@@ -34,6 +34,8 @@ where ViewModel: UITableViewDataSource,
         assert(delegate != nil)
         assert(dataSource != nil)
         DispatchQueue.main.async(execute: reloadData)
+        separatorColor = .clear
+        tableFooterView = UIView()
     }
 
     public typealias ViewModel = ViewModel
