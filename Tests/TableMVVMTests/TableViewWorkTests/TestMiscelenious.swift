@@ -178,7 +178,9 @@ class TestMisc: XCTestCase {
     }
 
     func testHeaderFooter() {
-        let headerFooter: HeaderTF = .init(viewModel: .init(string: "dogs"))
+        let vm: HeaderFooter<TextView>.ViewModel = .init(string: "dogs")
+        XCTAssertEqual(vm.string, "dogs")
+        let headerFooter: HeaderFooter<TextView> = .init(viewModel: vm)
         XCTAssertEqual(headerFooter.view.viewModel.string, "dogs")
         let headerFooter1: HeaderTF = .init()
         XCTAssertEqual(headerFooter1.view.viewModel.string, "cats")

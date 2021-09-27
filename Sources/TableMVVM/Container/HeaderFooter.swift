@@ -31,7 +31,9 @@ where View: HasViewModel,
             // UISystemBackgroundView.
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
-                self.allSubViews.filter { $0 !== self.view }.forEach {
+                self.allSubViews.filter { !self.view.allSubViews.contains($0)
+                    && $0 != self.view
+                }.forEach {
                     $0.backgroundColor = .clear
                 }
                 self.contentView.inject(view: self.view)
