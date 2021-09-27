@@ -186,8 +186,8 @@ class TestMisc: XCTestCase {
         XCTAssertEqual(headerFooter1.view.viewModel.string, "cats")
         XCTAssertEqual(HeaderTF.className, "TextView")
         XCTAssertEqual(headerFooter.subviews.first?.backgroundColor, .clear)
-        XCTAssertNotNil(headerFooter.subviews.first?.subviews.first)
-        XCTAssertEqual(headerFooter.subviews.first?.subviews.first?.backgroundColor, .clear)
+     //   XCTAssertNotNil(headerFooter.subviews.first?.subviews.first)
+      //   XCTAssertEqual(headerFooter.subviews.first?.subviews.first?.backgroundColor, .clear)
         XCTAssertGreaterThan(headerFooter.contentView.subviews.count, 0)
     }
 
