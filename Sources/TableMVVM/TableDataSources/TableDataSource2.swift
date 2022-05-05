@@ -7,36 +7,43 @@
 
 import UIKit
 
- public class TableDataSource2<
+public class TableDataSource2<
     Section0: PrimaryTableSectionMethods,
     Section1: PrimaryTableSectionMethods
->: NSObject, UITableViewDataSource, UITableViewDelegate, HasRegistrationCandidates, HasTable
+>: TableDataSourceAndDelegate, HasFallBack, HasIsEmpty
 where Section0: HasFallBack,
       Section1: HasFallBack {
 
+    public var isEmpty: Bool {
+        section0.count == 0 && section1.count == 0
+    }
+    
+    public static var fallBack: Self { .init() }
+    
     public var table: UITableView?
-
-    init(
-        section0: Section0,
-        section1: Section1
+    
+    public required init(
+        section0: Section0 = .fallBack,
+        section1: Section1 = .fallBack
     ) {
         self.section0 = section0
         self.section1 = section1
     }
-    var queue: DispatchQueueType = DispatchQueue.main
-
+    
+    public var queue: DispatchQueueType = DispatchQueue.main
+    
     public var registerCandidates: [RegistersCells & RegistersHeader] { [section0, section1] }
-
-    var section0: Section0 = .fallBack {
+    
+    public var section0: Section0 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-
-    var section1: Section1 = .fallBack {
+    
+    public var section1: Section1 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
-
+    
     public func numberOfSections(in tableView: UITableView) -> Int { 2 }
-
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0: return section0.tableViewDidSelectRowAt(tableView, didSelectRowAt: indexPath)
@@ -44,7 +51,7 @@ where Section0: HasFallBack,
         default: do {}
         }
     }
-
+    
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0: return section0.tableViewViewForHeader(tableView)
@@ -52,7 +59,7 @@ where Section0: HasFallBack,
         default: return nil
         }
     }
-
+    
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0: return section0.tableViewHeightForHeaderInSection(tableView)
@@ -60,7 +67,7 @@ where Section0: HasFallBack,
         default: return 0
         }
     }
-
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return section0.tableViewNumberOfRows(tableView)
@@ -68,7 +75,7 @@ where Section0: HasFallBack,
         default: return 0
         }
     }
-
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0: return section0.tableView(tableView, cellForRowAt: indexPath)

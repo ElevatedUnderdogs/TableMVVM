@@ -11,6 +11,19 @@ import XCTest
 /// Tests to efficiently reach multiple components
 class TestDataSource1: XCTestCase {
 
+    func testDataSource0IsEmpty() {
+        let dataSource: SimpleDS2 = SimpleDS2.fallBack
+        dataSource.section0.cellsViewModels = []
+        dataSource.section1.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = [.init(string: "cats")]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section1.cellsViewModels = [.black]
+        XCTAssertFalse(dataSource.isEmpty)
+    }
+
     // MARK: - TableDataSource1
     func testTableDataSource1ReloadData() {
         let section = SectionDS.fallBack { _, _ in }
@@ -114,7 +127,7 @@ class TestDataSource1: XCTestCase {
 
     func testTableDataSource1cellForRowAt0() {
         let dataSource: TableDS = TableDS(section0: .fallBack { _, _ in })
-        let table = TableMVVM<TableDS>()
+        let table = UITableMVVM<TableDS>()
         dataSource.registerCells(tableView: table)
         let cell = dataSource.tableView(table, cellForRowAt: .init(row: 0, section: 0))
         XCTAssertTrue(cell is ViewModelCell<TextView>)

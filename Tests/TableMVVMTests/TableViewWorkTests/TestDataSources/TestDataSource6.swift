@@ -33,6 +33,30 @@ extension SimpleDS7 {
 /// Tests to efficiently reach multiple components
 class TestDataSource7: XCTestCase {
 
+    func testDataSourceIsEmpty() {
+        let dataSource: SimpleDS8 = SimpleDS8.fallBack
+        dataSource.section0.cellsViewModels = []
+        dataSource.section1.cellsViewModels = []
+        dataSource.section2.cellsViewModels = []
+        dataSource.section3.cellsViewModels = []
+        dataSource.section4.cellsViewModels = []
+        dataSource.section5.cellsViewModels = []
+        dataSource.section6.cellsViewModels = []
+
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = [.init(string: "cats")]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section1.cellsViewModels = [.black]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section1.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section6.cellsViewModels = [.init(string: "dog")]
+        XCTAssertFalse(dataSource.isEmpty)
+        dataSource.section6.cellsViewModels = []
+    }
+
     // MARK: - TableDataSource1
     func testTableDataSource1ReloadData() {
         let dataSource: SimpleDS7 = SimpleDS7.fallBack()
@@ -161,7 +185,7 @@ class TestDataSource7: XCTestCase {
 
     func testTableDataSource1cellForRowAt0() {
         let dataSource: SimpleDS7 = SimpleDS7.fallBack()
-        let table = TableMVVM<SimpleDS7>()
+        let table = UITableMVVM<SimpleDS7>()
         dataSource.registerCells(tableView: table)
         XCTAssertTrue(dataSource.tableView(table, cellForRowAt: .init(item: 0, section: 0)) is CellTF)
         XCTAssertTrue(dataSource.tableView(table, cellForRowAt: .init(item: 0, section: 1)) is CellCV)
@@ -174,7 +198,7 @@ class TestDataSource7: XCTestCase {
 
     func testOutsideBounds() {
         let dataSource: SimpleDS7 = SimpleDS7.fallBack()
-        let table = TableMVVM<SimpleDS7>()
+        let table = UITableMVVM<SimpleDS7>()
         dataSource.registerCells(tableView: table)
         XCTAssertNotNil(dataSource.tableView(table, cellForRowAt: .init(item: 0, section: 8)))
         XCTAssertFalse(

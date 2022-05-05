@@ -7,23 +7,28 @@
 
 import UIKit
 
- public class TableDataSource1<
-    Section0: PrimaryTableSectionMethods
->: NSObject, UITableViewDataSource, UITableViewDelegate, HasRegistrationCandidates, HasTable
+public class TableDataSource1<Section0: PrimaryTableSectionMethods>: TableDataSourceAndDelegate, HasFallBack, HasIsEmpty
 where Section0: HasFallBack {
 
-     public var table: UITableView?
-     public var registerCandidates: [RegistersCells & RegistersHeader] { [section0] }
+    public var isEmpty: Bool {
+        section0.count == 0
+    }
+
+    public static var fallBack: Self { .init() }
+
+    public var table: UITableView?
+    public var registerCandidates: [RegistersCells & RegistersHeader] { [section0]
+    }
 
     /// Designated Primary initializer
     /// - Parameter section0: pass an instance of the generic section.
-    init(section0: Section0) {
+    public required init(section0: Section0 = .fallBack) {
         self.section0 = section0
     }
 
-    var queue: DispatchQueueType = DispatchQueue.main
+    public var queue: DispatchQueueType = DispatchQueue.main
 
-    var section0: Section0 = .fallBack {
+    public var section0: Section0 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
 

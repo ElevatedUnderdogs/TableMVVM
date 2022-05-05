@@ -25,6 +25,14 @@ extension SimpleDS3 {
 /// Tests to efficiently reach multiple components
 class TestDataSource3: XCTestCase {
 
+    func testDataSource0IsEmpty() {
+        let dataSource: SimpleDS1 = SimpleDS1.fallBack
+        dataSource.section0.cellsViewModels = []
+        XCTAssertTrue(dataSource.isEmpty)
+        dataSource.section0.cellsViewModels = [.init(string: "cats")]
+        XCTAssertFalse(dataSource.isEmpty)
+    }
+
     // MARK: - TableDataSource1
     func testTableDataSource1ReloadData() {
         let dataSource: SimpleDS3 = SimpleDS3.fallBack()
@@ -113,7 +121,7 @@ class TestDataSource3: XCTestCase {
 
     func testTableDataSource1cellForRowAt0() {
         let dataSource: SimpleDS3 = SimpleDS3.fallBack()
-        let table = TableMVVM<SimpleDS3>()
+        let table = UITableMVVM<SimpleDS3>()
         dataSource.registerCells(tableView: table)
         XCTAssertTrue(dataSource.tableView(table, cellForRowAt: .init(item: 0, section: 0)) is CellTF)
         XCTAssertTrue(dataSource.tableView(table, cellForRowAt: .init(item: 0, section: 1)) is CellCV)

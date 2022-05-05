@@ -7,21 +7,23 @@
 
 import UIKit
 
-
- public class TableMVVM<ViewModel>: UITableView
+/// Example:
+/// `typealias MyDataSource = TableDataSource1<SectionNoHeader<ColorCell>>`
+/// `TableMVVM<MyDataSource>`
+public class UITableMVVM<ViewModel>: UITableView
 where ViewModel: UITableViewDataSource,
       ViewModel: UITableViewDelegate,
       ViewModel: RegistersCells,
       ViewModel: RegistersHeader,
       ViewModel: HasTable {
 
-    convenience init(
-        presentationLogic: ((ViewModel?) -> ViewModel)? = nil,
-        viewModel: ViewModel
+    public convenience init(
+        viewModel: ViewModel,
+        presentationLogic: ((ViewModel?) -> ViewModel)? = nil
     ) {
         self.init(frame: .zero)
         self.viewModel = viewModel
-        self.viewModel?.set(table: self)
+        self.viewModel?.table = self
         self.presentationLogic = presentationLogic
         self.presentationViewModel = presentationLogic?(viewModel) ?? viewModel
         assert(presentationViewModel != nil)
@@ -31,14 +33,18 @@ where ViewModel: UITableViewDataSource,
         dataSource = presentationViewModel
         assert(delegate != nil)
         assert(dataSource != nil)
-        DispatchQueue.main.async(execute: reloadData)
+        DispatchQueue.main.async {
+            self.reloadData()
+            self.separatorColor = .clear
+            self.tableFooterView = UIView()
+        }
     }
 
     public typealias ViewModel = ViewModel
 
     var presentationLogic: ((ViewModel?) -> ViewModel)?
 
-    var viewModel: ViewModel? {
+    public var viewModel: ViewModel? {
         didSet {
             self.presentationViewModel = presentationLogic?(viewModel) ?? viewModel
         }
@@ -50,7 +56,11 @@ where ViewModel: UITableViewDataSource,
             dataSource = presentationViewModel
             presentationViewModel?.registerCells(tableView: self)
             presentationViewModel?.registerHeader(tableView: self)
-            DispatchQueue.main.async(execute: reloadData)
+            DispatchQueue.main.async {
+                self.reloadData()
+                self.separatorColor = .clear
+                self.tableFooterView = UIView()
+            }
         }
     }
 

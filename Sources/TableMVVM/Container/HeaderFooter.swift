@@ -12,9 +12,9 @@ import UIKit
 /// This becomes problematic when you need to use that view separately.  So then you either duplicate the code
 /// or have to refactor out the view from the cell so that it can be used separately from a `UITableViewCell` and
 /// as a subview to a `UItableviewCell`.
- public class HeaderFooter<View: UIView>: UITableViewHeaderFooterView, HasViewModel, HasInit
+ public class HeaderFooter<View: UIView>: UITableViewHeaderFooterView, HasViewModel
 where View: HasViewModel,
-      View.ViewModel: HasInit {
+      View.ViewModel: HasFallBack {
 
     var view: View = .init(frame: .zero)
 
@@ -29,10 +29,13 @@ where View: HasViewModel,
         didSet {
             // Makes clear the stupid default background for UITableViewHeaderFooterView:
             // UISystemBackgroundView.
+            tintColor = .clear
+            contentView.backgroundColor = .clear
             contentView.inject(view: view)
             subviews.first?.backgroundColor = .clear
             subviews.first?.subviews.first?.backgroundColor = .clear
+            subviews.first?.allSubViews.forEach { $0.backgroundColor = .clear }
             view.viewModel = viewModel
         }
     }
-}
+ }

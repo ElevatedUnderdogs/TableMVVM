@@ -31,4 +31,8 @@ import UIKit
             $0.isActive = true
         }
     }
+
+    var allSubViews: [UIView] {
+        subviews.flatMap { [$0] + $0.allSubViews }
+    }
 }

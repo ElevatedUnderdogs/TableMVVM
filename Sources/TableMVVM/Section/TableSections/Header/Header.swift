@@ -7,13 +7,14 @@
 
 import UIKit
 
-public struct Header<Head: UITableViewHeaderFooterView>: HasHeader, RegistersHeader, HasInit
+/// A struct space for HeaderFooterView type information along with viewModel data for it.
+public struct Header<Head: UITableViewHeaderFooterView>: HasHeader, RegistersHeader, HasInit, HasViewModel
 where Head: HasViewModel,
-      Head.ViewModel: HasInit {
+      Head.ViewModel: HasFallBack {
 
-    public var headerViewModel: Head.ViewModel = .fallBack
-    public init() { self.headerViewModel = .fallBack }
-    public init(headerViewModel: Head.ViewModel) {
-        self.headerViewModel = headerViewModel
+    public var viewModel: Head.ViewModel = .fallBack
+
+    public init() {
+        self.viewModel = .fallBack
     }
 }

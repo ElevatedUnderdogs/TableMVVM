@@ -7,10 +7,9 @@
 
 import UIKit
 
-
- public class Container<Contained: UIView>: UIView, HasViewModel
+public class Container<Contained: UIView>: UIView, HasViewModel
 where Contained: HasViewModel,
-      Contained.ViewModel: HasInit {
+      Contained.ViewModel: HasFallBack {
 
     var view: Contained = .init(frame: .zero)
 
@@ -18,12 +17,7 @@ where Contained: HasViewModel,
         didSet {
             inject(view: view, insets: viewModel.insets)
             view.viewModel = viewModel.viewModel
+            backgroundColor = .clear
         }
-    }
-
-     public struct ViewModel: HasFallBack {
-        public var insets: UIEdgeInsets = .zero
-        public var viewModel: Contained.ViewModel = .fallBack
-        public static var fallBack: Self { .init() }
     }
 }

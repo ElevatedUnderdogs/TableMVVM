@@ -7,7 +7,7 @@
 
 import UIKit
 
- public class TableDataSource8<
+public class TableDataSource8<
     Section0: PrimaryTableSectionMethods,
     Section1: PrimaryTableSectionMethods,
     Section2: PrimaryTableSectionMethods,
@@ -16,7 +16,7 @@ import UIKit
     Section5: PrimaryTableSectionMethods,
     Section6: PrimaryTableSectionMethods,
     Section7: PrimaryTableSectionMethods
->: NSObject, UITableViewDataSource, UITableViewDelegate, HasRegistrationCandidates, HasTable
+>: TableDataSourceAndDelegate, HasFallBack, HasIsEmpty
 where Section0: HasFallBack,
       Section1: HasFallBack,
       Section2: HasFallBack,
@@ -25,18 +25,31 @@ where Section0: HasFallBack,
       Section5: HasFallBack,
       Section6: HasFallBack,
       Section7: HasFallBack {
+    
+    public static var fallBack: Self { .init() }
 
-     public var table: UITableView?
-
-    init(
-        section0: Section0,
-        section1: Section1,
-        section2: Section2,
-        section3: Section3,
-        section4: Section4,
-        section5: Section5,
-        section6: Section6,
-        section7: Section7
+    public var isEmpty: Bool {
+        section0.count == 0 &&
+            section1.count == 0 &&
+            section2.count == 0 &&
+            section3.count == 0 &&
+            section4.count == 0 &&
+            section5.count == 0 &&
+            section6.count == 0 &&
+            section7.count == 0
+    }
+    
+    public var table: UITableView?
+    
+    public required init(
+        section0: Section0 = .fallBack,
+        section1: Section1 = .fallBack,
+        section2: Section2 = .fallBack,
+        section3: Section3 = .fallBack,
+        section4: Section4 = .fallBack,
+        section5: Section5 = .fallBack,
+        section6: Section6 = .fallBack,
+        section7: Section7 = .fallBack
     ) {
         self.section0 = section0
         self.section1 = section1
@@ -47,40 +60,47 @@ where Section0: HasFallBack,
         self.section6 = section6
         self.section7 = section7
     }
-
-   public  var registerCandidates: [RegistersCells & RegistersHeader] {
+    
+    public  var registerCandidates: [RegistersCells & RegistersHeader] {
         [section0, section1, section2, section3, section4, section5, section6, section7]
     }
-
-    var queue: DispatchQueueType = DispatchQueue.main
-
-    var section0: Section0 = .fallBack {
-        didSet { self.table?.reload(on: queue) }
-    }
-    var section1: Section1 = .fallBack {
-        didSet { self.table?.reload(on: queue) }
-    }
-    var section2: Section2 = .fallBack {
-        didSet { self.table?.reload(on: queue) }
-    }
-    var section3: Section3 = .fallBack {
-        didSet { self.table?.reload(on: queue) }
-    }
-    var section4: Section4 = .fallBack {
-        didSet { self.table?.reload(on: queue) }
-    }
-    var section5: Section5 = .fallBack {
-        didSet { self.table?.reload(on: queue) }
-    }
-    var section6: Section6 = .fallBack {
-        didSet { self.table?.reload(on: queue) }
-    }
-    var section7: Section7 = .fallBack {
+    
+    public var queue: DispatchQueueType = DispatchQueue.main
+    
+    public var section0: Section0 = .fallBack {
         didSet { self.table?.reload(on: queue) }
     }
 
+    public var section1: Section1 = .fallBack {
+        didSet { self.table?.reload(on: queue) }
+    }
+
+    public var section2: Section2 = .fallBack {
+        didSet { self.table?.reload(on: queue) }
+    }
+
+    public var section3: Section3 = .fallBack {
+        didSet { self.table?.reload(on: queue) }
+    }
+
+    public var section4: Section4 = .fallBack {
+        didSet { self.table?.reload(on: queue) }
+    }
+
+    public var section5: Section5 = .fallBack {
+        didSet { self.table?.reload(on: queue) }
+    }
+
+    public var section6: Section6 = .fallBack {
+        didSet { self.table?.reload(on: queue) }
+    }
+
+    public var section7: Section7 = .fallBack {
+        didSet { self.table?.reload(on: queue) }
+    }
+    
     public func numberOfSections(in tableView: UITableView) -> Int { 8 }
-
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0: return section0.tableViewDidSelectRowAt(tableView, didSelectRowAt: indexPath)
@@ -94,7 +114,7 @@ where Section0: HasFallBack,
         default: do {}
         }
     }
-
+    
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0: return section0.tableViewViewForHeader(tableView)
@@ -108,8 +128,8 @@ where Section0: HasFallBack,
         default: return nil
         }
     }
-
-     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0: return section0.tableViewHeightForHeaderInSection(tableView)
         case 1: return section1.tableViewHeightForHeaderInSection(tableView)
@@ -122,7 +142,7 @@ where Section0: HasFallBack,
         default: return 0
         }
     }
-
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return section0.tableViewNumberOfRows(tableView)
@@ -136,7 +156,7 @@ where Section0: HasFallBack,
         default: return 0
         }
     }
-
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0: return section0.tableView(tableView, cellForRowAt: indexPath)

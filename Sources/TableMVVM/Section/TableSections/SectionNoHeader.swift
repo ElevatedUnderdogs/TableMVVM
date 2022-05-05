@@ -19,5 +19,12 @@ where Cell: UITableViewCell,
 
     public var cellsViewModels: [Cell.ViewModel] = []
     public var cellTapped: CellTapAction?
+    public init(
+        cellsViewModels: [Cell.ViewModel] = [],
+        cellTapped: CellTapAction? = nil
+    ) {
+        self.cellsViewModels = cellsViewModels
+        self.cellTapped = cellTapped
+    }
     public static var fallBack: Self { .init() }
 }

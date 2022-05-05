@@ -7,17 +7,40 @@
 
 import UIKit
 
-public struct OneRow<Cell: UITableViewCell>: PrimaryRowsMethods, HasFallBack, RegistersCells
+public struct OneRow<Cell: UITableViewCell>: PrimaryRowsMethods, HasFallBack, RegistersCells, HasViewModel
 where Cell: HasViewModel,
       Cell.ViewModel: HasFallBack {
+
+    public init() {
+        self.item = .fallBack
+        self.tapped = nil
+    }
 
     public static var fallBack: Self { .init() }
 
     public var count: Int { 1 }
 
-    var item: Cell.ViewModel = .fallBack
+    public var item: Cell.ViewModel {
+        set {
+            viewModel = newValue
+        }
+        get {
+            viewModel
+        }
+    }
 
-    var tapped: CellTapAction?
+    public var viewModel: Cell.ViewModel = .fallBack
+
+    public var tapped: CellTapAction?
+
+    /// Initializes a OneRow
+    /// - Parameters:
+    ///   - item: The item is the same as viewModel
+    ///   - tapped: action when the cell is tapped.
+    public init(item: Cell.ViewModel = .fallBack, tapped: CellTapAction? = nil) {
+        self.item = item
+        self.tapped = tapped
+    }
 
     public typealias CellTapAction = (Cell.ViewModel, IndexPath) -> Void
 

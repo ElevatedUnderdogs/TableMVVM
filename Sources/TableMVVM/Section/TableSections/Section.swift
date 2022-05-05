@@ -29,28 +29,28 @@ where Header: UITableViewHeaderFooterView,
 
     public typealias Head = Header
 
-    public var headerViewModel: Header.ViewModel = .fallBack
+    public var viewModel: Header.ViewModel = .fallBack
     public var cellsViewModels: [Cell.ViewModel] = []
     public var cellTapped: CellTapAction?
 
     public init() {
-        self.headerViewModel = .fallBack
+        self.viewModel = .fallBack
         self.cellsViewModels = []
         self.cellTapped = nil
     }
 
     public init(
-        headerViewModel: Header.ViewModel,
-        cellsViewModels: [Cell.ViewModel],
-        cellTapped: CellTapAction?
+        headerViewModel: Header.ViewModel = .fallBack,
+        cellsViewModels: [Cell.ViewModel] = [],
+        cellTapped: CellTapAction? = nil
     ) {
-        self.headerViewModel = headerViewModel
+        self.viewModel = headerViewModel
         self.cellsViewModels = cellsViewModels
         self.cellTapped = cellTapped
     }
 }
 
-public class TextView: UIView, HasViewModel, HasInit {
+public class TextView: UIView, HasViewModel {
 
     public struct ViewModel: HasInit {
         var string: String = "cats"

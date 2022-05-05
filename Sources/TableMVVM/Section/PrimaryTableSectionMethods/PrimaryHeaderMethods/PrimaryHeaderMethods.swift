@@ -14,7 +14,7 @@ import UIKit
 ///     inherited by: `SectionNoHeader`, `SectionWithoutHeader`
 ///   Which are inherited by: `Section`, `Header`, for `HasHeader`
 ///   Which are inherited by: `SectionWithRowsHeader` for `ComposesHeader`
- public protocol PrimaryHeaderMethods {
+public protocol PrimaryHeaderMethods {
     func tableViewViewForHeader(_ tableView: UITableView) -> UIView?
     func tableViewHeightForHeaderInSection(_ tableView: UITableView) -> CGFloat
 }
