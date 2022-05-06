@@ -28,6 +28,7 @@ where View: HasViewModel,
 
     public var viewModel: ViewModel = .fallBack {
         didSet {
+            contentView.backgroundColor = .clear
             contentView.inject(view: view)
             view.viewModel = viewModel
         }
