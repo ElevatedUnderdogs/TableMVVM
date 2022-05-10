@@ -28,6 +28,7 @@ where View: HasViewModel,
 
     public var viewModel: ViewModel = .fallBack {
         didSet {
+            selectionStyle = .none
             contentView.backgroundColor = .clear
             tintColor = .clear
             contentView.backgroundColor = .clear
