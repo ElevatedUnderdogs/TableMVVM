@@ -41,11 +41,21 @@ where ViewModel: UITableViewDataSource,
     }
 
     public typealias ViewModel = ViewModel
+    typealias Action = () -> Void
 
     var presentationLogic: ((ViewModel?) -> ViewModel)?
 
+    func updateViewModelWithoutTableUpdate(_ action: Action) {
+        updatesEnabled = false
+        action()
+        updatesEnabled = true
+    }
+
+    private var updatesEnabled: Bool = true
+
     public var viewModel: ViewModel? {
         didSet {
+            guard updatesEnabled else { return }
             self.presentationViewModel = presentationLogic?(viewModel) ?? viewModel
         }
     }
