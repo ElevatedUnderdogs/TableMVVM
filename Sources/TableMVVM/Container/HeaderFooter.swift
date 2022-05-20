@@ -29,6 +29,13 @@ where View: HasViewModel,
         didSet {
             // Makes clear the stupid default background for UITableViewHeaderFooterView:
             // UISystemBackgroundView.
+            if #available(iOS 14.0, *) {
+                var backgroundConfig = UIBackgroundConfiguration.listPlainHeaderFooter()
+                backgroundConfig.backgroundColor = .clear
+                self.backgroundConfiguration = backgroundConfig
+                automaticallyUpdatesContentConfiguration = false
+            }
+
             tintColor = .clear
             contentView.backgroundColor = .clear
             contentView.inject(view: view)
