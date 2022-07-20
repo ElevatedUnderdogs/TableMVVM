@@ -13,29 +13,54 @@ import UIKit
 /// and as a subview to a `UItableviewCell`.
 ///
 /// ViewModelCell automatically lets you inject a view into a TableViewCell
- public class ViewModelCell<View: UIView>: UITableViewCell, HasViewModel
+public class ViewModelCell<View: UIView>: UITableViewCell, HasViewModel
 where View: HasViewModel,
       View.ViewModel: HasFallBack {
-
+    
     var view: View = .init(frame: .zero)
-
+    
     /// This is used as a reuse identifier when dequeueing the cell.
-     override public class var className: String {
+    override public class var className: String {
         View.className
     }
-
-     public typealias ViewModel = View.ViewModel
-
+    
+    override public func addSubview(_ view: UIView) {
+        super.addSubview(view)
+        clearContainer()
+    }
+    
+    @available(iOS 14.0, *)
+    public override func setNeedsUpdateConfiguration() {
+        clearContainer()
+    }
+    
+    @available(iOS 14.0, *)
+    public override func updateConfiguration(using state: UICellConfigurationState) {
+        super.updateConfiguration(using: state)
+        clearContainer()
+    }
+    
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        clearContainer()
+    }
+    
+    func clearContainer() {
+        contentView.backgroundColor = .clear
+        tintColor = .clear
+        contentView.backgroundColor = .clear
+        subviews.first?.backgroundColor = .clear
+        subviews.first?.subviews.first?.backgroundColor = .clear
+        subviews.first?.allSubViews.forEach { $0.backgroundColor = .clear }
+    }
+    
+    public typealias ViewModel = View.ViewModel
+    
     public var viewModel: ViewModel = .fallBack {
         didSet {
+            clearContainer()
             selectionStyle = .none
-            contentView.backgroundColor = .clear
-            tintColor = .clear
-            contentView.backgroundColor = .clear
             contentView.inject(view: view)
-            subviews.first?.backgroundColor = .clear
-            subviews.first?.subviews.first?.backgroundColor = .clear
-            subviews.first?.allSubViews.forEach { $0.backgroundColor = .clear }
             view.viewModel = viewModel
         }
     }
