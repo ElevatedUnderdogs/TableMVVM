@@ -45,6 +45,11 @@ where View: HasViewModel,
         clearContainer()
     }
     
+    public override func didMoveToWindow() {
+        super.didMoveToWindow()
+        clearContainer()
+    }
+    
     func clearContainer() {
         contentView.backgroundColor = .clear
         tintColor = .clear
