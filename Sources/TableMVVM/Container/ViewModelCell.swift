@@ -27,6 +27,16 @@ where View: HasViewModel,
     override public func addSubview(_ view: UIView) {
         super.addSubview(view)
         clearContainer()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
+    
+    @objc fileprivate func applicationDidBecomeActive() {
+        clearContainer()
     }
     
     @available(iOS 14.0, *)
