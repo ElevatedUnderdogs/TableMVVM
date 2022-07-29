@@ -24,16 +24,6 @@ where View: HasViewModel,
         View.className
     }
     
-    override func willMove(toWindow newWindow: UIWindow?) {
-        super.willMove(toWindow: newWindow)
-        clearContainer()
-    }
-    
-    override func didMoveToWindow() {
-        super.didMoveToWindow()
-        clearContainer()
-    }
-    
     override public func addSubview(_ view: UIView) {
         super.addSubview(view)
         clearContainer()
