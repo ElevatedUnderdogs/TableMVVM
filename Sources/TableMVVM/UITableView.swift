@@ -30,6 +30,7 @@ import UIKit
         guard var cell: T = dequeueReusableHeaderFooterView(withIdentifier: T.className) as? T,
               let viewModel = viewModel else { return .init() }
         cell.viewModel = viewModel
+        cell.backgroundColor = .clear
         return cell
     }
 
@@ -45,6 +46,7 @@ import UIKit
         guard var cell = dequeueReusableCell(withIdentifier: T.className, for: indexPath) as? T,
               let viewModel = viewModel else { return .init() }
         cell.viewModel = viewModel
+        cell.backgroundColor = .clear
         return cell
     }
 }
